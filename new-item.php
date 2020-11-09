@@ -8,7 +8,6 @@ if(isset($_POST["Submit"])){
         $Iattributes = $_POST["attributes"];
         $Idescription = $_POST["description"];
         $Isuppliers = $_POST["suppliers"];
-        
         $servername = "localhost";
         $username = "root";
         $password = "root";
@@ -18,7 +17,7 @@ if(isset($_POST["Submit"])){
         // Check connection
         if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
-}        
+        }        
         $sql = "INSERT INTO item_list (item_name,item_price,item_attributes,item_description, item_suppliers)
         VALUES ('$Iname', '$Iprice', '$Iattributes','$Idescription', '$Isuppliers')";
         
@@ -30,7 +29,6 @@ if(isset($_POST["Submit"])){
         }
 }
 }
-
 ?>
 
 <!DOCTYPE html>

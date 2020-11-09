@@ -412,7 +412,7 @@ if(isset($_POST["Submit"])){
                           <h3 class="card text-center p-4 bg-light mb-4">Enter New Vendor Details</h3>
                           <form action="new-vendor.php" method="post" class="container" >
                                 <div class="form-row">
-                                <div class="form-group col-md-12">
+                                    <div class="form-group col-md-12">
                                     <label for="name">Vendor Nane</label>
                                     <input type="text" class="form-control" id="name" placeholder="Name" name="name">
                                     </div>
