@@ -1,15 +1,5 @@
 <?php
-// $servername = "localhost";
-// $username = "root";
-// $password = "root";
-// $dbname = "pos";
 
-// // Create connection
-// $conn = new mysqli($servername, $username, $password, $dbname);
-// // Check connection
-// if ($conn->connect_error) {
-//   die("Connection failed: " . $conn->connect_error);
-// }
 
 if(isset($_POST["Submit"])){
     if(!empty($_POST['name']) && !empty($_POST['mobile'])){
@@ -33,7 +23,7 @@ if(isset($_POST["Submit"])){
         $sql = "INSERT INTO vendor (name,number,address,email, gst_no)
         VALUES ('$Vname', '$mobile', '$address','$email', '$gst')";
         
-        $Vname="";
+        
         if (mysqli_query($conn, $sql)) {
         //   echo "New record created successfully";
         echo '<script>alert("New record created successfully")</script>';

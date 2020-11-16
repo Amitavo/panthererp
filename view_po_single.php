@@ -1,118 +1,224 @@
 
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "pos";
+require_once('DB_POS.php');
+$SearchQueryParameter = $_GET["id"];
+// echo "<h1> PO NO FECHED IS ".$SearchQueryParameter."</h1>";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+// Data Fetching from po list
+
+$sql = "SELECT * FROM purchase_order WHERE po_no='$SearchQueryParameter' ";
+$stmt = $conn->query($sql);
+while ($DataRows  = $stmt->fetch()) {
+    $po_no = $DataRows["po_no"];
+    $date = $DataRows["date"];
+    $vendor_id = $DataRows["vendor_id"];
+    $total = $DataRows["total"];
+    $shipping = $DataRows["shipping"];
+    $status = $DataRows["status"];
+
+    $item1_id = $DataRows["item1_id"];
+    $item2_id = $DataRows["item2_id"];
+    $item3_id = $DataRows["item3_id"];
+    $item4_id = $DataRows["item4_id"];
+    $item5_id = $DataRows["item5_id"];
+    $item6_id = $DataRows["item6_id"];
+    $item7_id = $DataRows["item7_id"];
+    $item8_id = $DataRows["item8_id"];
+    $item9_id = $DataRows["item9_id"];
+    $item10_id = $DataRows["item10_id"];
+    $item11_id = $DataRows["item11_id"];
+    $item12_id = $DataRows["item12_id"];
+
+    $qty1 = $DataRows["qty1"];
+    $qty2 = $DataRows["qty2"];
+    $qty3 = $DataRows["qty3"];
+    $qty4 = $DataRows["qty4"];
+    $qty5 = $DataRows["qty5"];
+    $qty6 = $DataRows["qty6"];
+    $qty7 = $DataRows["qty7"];
+    $qty8 = $DataRows["qty8"];
+    $qty9 = $DataRows["qty9"];
+    $qty10 = $DataRows["qty10"];
+    $qty11 = $DataRows["qty11"];
+    $qty12 = $DataRows["qty12"];
+    
 }
 
-if(isset($_POST["POSubmit"])){
-  if($_POST[item1] !== "Select a Item --"){
-      $vendor = $_POST["vendor"];
-      $item1 = $_POST["item1"];
-      
+// echo "<br>Vendor is ".$vendor_id;
+// echo "<br>Shipping is ".$shipping;
+// echo "<br>Total is ".$total;
+
+//Fetching Vendor Details from Vendor table.\
+$sql_vendor = "SELECT * FROM vendor WHERE vendor_id='$vendor_id' ";
+$stmt_vendor = $conn->query($sql_vendor);
+
+while ($DataRows  = $stmt_vendor->fetch()) {
+  $vendor_name = $DataRows["name"];
+  $vendor_number = $DataRows["number"];
+  $vendor_address = $DataRows["address"];
+  $vendor_gst_no = $DataRows["gst_no"];
+}
+
+//Fetching Item details from PO table
+
+//Item 1 details
+
+$sql1 = "SELECT * FROM item_list WHERE item_id='$item1_id'";
+$stmt1 = $conn->query($sql1);
+
+while ($DataRows  = $stmt1->fetch()) {
+  $item1 = $DataRows["item_name"];
+  $item1_price = $DataRows["item_price"];
+  $item1_tax = $DataRows["item_tax"];
+  $item1_total = ($item1_price +($item1_tax*$item1_price/100))*$qty1;
+}
+
+//Item 2 details
+if(!empty($item2_id)){
+  $sql2 = "SELECT * FROM item_list WHERE item_id='$item2_id'";
+  $stmt2 = $conn->query($sql2);
   
-      $qty1 = $_POST["qty1"];
-      if(!empty($_POST['shipping'])){
-        $shipping = $_POST['shipping'];
-      }
-      if(!empty($_POST['qty2']) && $_POST[item2] !== "Select a Item --"){
-        $item2 = $_POST["item2"];
-        $qty2 = $_POST["qty2"];
-      }
-      if(!empty($_POST['qty3']) && $_POST[item3] !== "Select a Item --"){
-        $item3 = $_POST["item3"];
-        $qty3 = $_POST["qty3"];
-      }
-      if(!empty($_POST['qty4']) && $_POST[item4] !== "Select a Item --"){
-        $item4 = $_POST["item4"];
-        $qty4 = $_POST["qty4"];
-      }
-     if(!empty($_POST['qty5']) && $_POST[item5] !== "Select a Item --"){
-        $item5 = $_POST["item5"];
-        $qty5 = $_POST["qty5"];
-      }
-      if(!empty($_POST['qty6']) && $_POST[item6] !== "Select a Item --"){
-        $item6 = $_POST["item6"];
-        $qty6 = $_POST["qty6"];
-      }
-      if(!empty($_POST['qty7']) && $_POST[item7] !== "Select a Item --"){
-        $item7 = $_POST["item7"];
-        $qty7 = $_POST["qty7"];
-      }
-      if(!empty($_POST['qty8']) && $_POST[item8] !== "Select a Item --"){
-        $item8 = $_POST["item8"];
-        $qty8 = $_POST["qty8"];
-      }
-      if(!empty($_POST['qty9']) && $_POST[item9] !== "Select a Item --"){
-        $item9 = $_POST["item9"];
-        $qty9 = $_POST["qty9"];
-      }
-      if(!empty($_POST['qty10']) && $_POST[item10] !== "Select a Item --"){
-        $item10 = $_POST["item10"];
-        $qty10 = $_POST["qty10"];
-      }
-      if(!empty($_POST['qty11']) && $_POST[item11] !== "Select a Item --"){
-        $item11 = $_POST["item11"];
-        $qty11 = $_POST["qty11"];
-      }
-      if(!empty($_POST['qty12']) && $_POST[item12] !== "Select a Item --"){
-        $item12 = $_POST["item12"];
-        $qty12 = $_POST["qty12"];
-      }
-
-      }
-
-      session_start();
-    // Set session variables
-
-    $_SESSION[vendor_id] = $vendor;
-    $_SESSION[shipping] = $shipping;
-    
-
-    $_SESSION[qty1] = $qty1;
-    $_SESSION[qty2] = $qty2;
-    $_SESSION[qty3] = $qty3;
-    $_SESSION[qty4] = $qty4;
-    $_SESSION[qty5] = $qty5;
-    $_SESSION[qty6] = $qty6;
-    $_SESSION[qty7] = $qty7;
-    $_SESSION[qty8] = $qty8;
-    $_SESSION[qty9] = $qty9;
-    $_SESSION[qty10] = $qty10;
-    $_SESSION[qty11] = $qty11;
-    $_SESSION[qty12] = $qty12;
-}
-
-// Filtering Data--------------------------------
-$sql = "SELECT vendor_id, name, number,address,email,gst_no FROM vendor WHERE vendor_id  = '$vendor' ";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    
-    $vendor_name = $row['name'];
-    $vendor_number = $row['number'];
-    $vendor_address = $row['address'];
-    $vendor_email = $row['email'];
-    $vendor_gst_no = $row['gst_no'];
-
-    
+  while ($DataRows  = $stmt2->fetch()) {
+    $item2 = $DataRows["item_name"];
+    $item2_price = $DataRows["item_price"];
+    $item2_tax = $DataRows["item_tax"];
+    $item2_total = ($item2_price +($item2_tax*$item2_price/100))*$qty2;
   }
-} else {
-  echo "0 results";
-}
 
-//todo 
-//fetch data from db with where condition, and save value in a variable
+}
+//Item 3 details
+if(!empty($item3_id)){
+  $sql3 = "SELECT * FROM item_list WHERE item_id='$item3_id'";
+  $stmt3 = $conn->query($sql3);
+  
+  while ($DataRows  = $stmt3->fetch()) {
+    $item3 = $DataRows["item_name"];
+    $item3_price = $DataRows["item_price"];
+    $item3_tax = $DataRows["item_tax"];
+    $item3_total = ($item3_price +($item3_tax/100*$item3_price))*$qty3;
+  }
+
+}
+//Item 4 details
+if(!empty($item4_id)){
+  $sql4 = "SELECT * FROM item_list WHERE item_id='$item4_id'";
+  $stmt4 = $conn->query($sql4);
+  
+  while ($DataRows  = $stmt4->fetch()) {
+    $item4 = $DataRows["item_name"];
+    $item4_price = $DataRows["item_price"];
+    $item4_tax = $DataRows["item_tax"];
+    $item4_total = ($item4_price +($item4_tax*$item4_price/100))*$qty4;
+  }
+
+}
+//Item 5 details
+if(!empty($item5_id)){
+  $sql5 = "SELECT * FROM item_list WHERE item_id='$item5_id'";
+  $stmt5 = $conn->query($sql5);
+  
+  while ($DataRows  = $stmt5->fetch()) {
+    $item5 = $DataRows["item_name"];
+    $item5_price = $DataRows["item_price"];
+    $item5_tax = $DataRows["item_tax"];
+    $item5_total = ($item5_price +($item5_tax*$item5_price/100))*$qty5;
+  }
+
+}
+//Item 6 details
+if(!empty($item6_id)){
+  $sql6 = "SELECT * FROM item_list WHERE item_id='$item6_id'";
+  $stmt6 = $conn->query($sql6);
+  
+  while ($DataRows  = $stmt6->fetch()) {
+    $item6 = $DataRows["item_name"];
+    $item6_price = $DataRows["item_price"];
+    $item6_tax = $DataRows["item_tax"];
+    $item6_total = ($item6_price +($item6_tax*$item6_price/100))*$qty6;
+  }
+
+}
+//Item 7 details
+if(!empty($item7_id)){
+  $sql7 = "SELECT * FROM item_list WHERE item_id='$item7_id'";
+  $stmt7 = $conn->query($sql7);
+  
+  while ($DataRows  = $stmt7->fetch()) {
+    $item7 = $DataRows["item_name"];
+    $item7_price = $DataRows["item_price"];
+    $item7_tax = $DataRows["item_tax"];
+    $item7_total = ($item7_price +($item7_tax*$item7_price/100))*$qty7;
+  }
+
+}
+//Item 8 details
+if(!empty($item8_id)){
+  $sql8 = "SELECT * FROM item_list WHERE item_id='$item8_id'";
+  $stmt8 = $conn->query($sql8);
+  
+  while ($DataRows  = $stmt8->fetch()) {
+    $item8 = $DataRows["item_name"];
+    $item8_price = $DataRows["item_price"];
+    $item8_tax = $DataRows["item_tax"];
+    $item8_total = ($item8_price +($item8_tax*$item8_price/100))*$qty8;
+  }
+
+}
+//Item 9 details
+if(!empty($item9_id)){
+  $sql9 = "SELECT * FROM item_list WHERE item_id='$item9_id'";
+  $stmt9 = $conn->query($sql9);
+  
+  while ($DataRows  = $stmt9->fetch()) {
+    $item9 = $DataRows["item_name"];
+    $item9_price = $DataRows["item_price"];
+    $item9_tax = $DataRows["item_tax"];
+    $item9_total = ($item9_price +($item9_tax*$item9_price/100))*$qty9;
+  }
+
+}
+//Item 10 details
+if(!empty($item10_id)){
+  $sql10 = "SELECT * FROM item_list WHERE item_id='$item10_id'";
+  $stmt10 = $conn->query($sql10);
+  
+  while ($DataRows  = $stmt10->fetch()) {
+    $item10 = $DataRows["item_name"];
+    $item10_price = $DataRows["item_price"];
+    $item10_tax = $DataRows["item_tax"];
+    $item10_total = ($item10_price +($item10_tax*$item10_price/100))*$qty10;
+  }
+
+}
+//Item 11 details
+if(!empty($item11_id)){
+  $sql11 = "SELECT * FROM item_list WHERE item_id='$item11_id'";
+  $stmt11 = $conn->query($sql11);
+  
+  while ($DataRows  = $stmt11->fetch()) {
+    $item11 = $DataRows["item_name"];
+    $item11_price = $DataRows["item_price"];
+    $item11_tax = $DataRows["item_tax"];
+    $item11_total = ($item11_price +($item11_tax*$item11_price/100))*$qty11;
+  }
+
+}
+//Item 12 details
+if(!empty($item12_id)){
+  $sql12 = "SELECT * FROM item_list WHERE item_id='$item12_id'";
+  $stmt12 = $conn->query($sql12);
+  
+  while ($DataRows  = $stmt12->fetch()) {
+    $item12 = $DataRows["item_name"];
+    $item12_price = $DataRows["item_price"];
+    $item12_tax = $DataRows["item_tax"];
+    $item12_total = ($item12_price +($item12_tax*$item12_price/100))*$qty12;
+  }
+
+}
+// Calculating subtotal value
+$subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_total + $item6_total + $item7_total + $item8_total + $item9_total + $item10_total + $item11_total + $item11_total;
 
 ?>
 
@@ -183,8 +289,8 @@ if ($result->num_rows > 0) {
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item active" href="create-po.php">Create PO</a>
-            <a class="collapse-item " href="view_po_all.php">View All PO</a>
+            <a class="collapse-item " href="create-po.php">Create PO</a>
+            <a class="collapse-item active" href="view-po_all.php">View All PO</a>
             <a class="collapse-item" href="cards.html">Edit PO</a>
           </div>
         </div>
@@ -453,7 +559,7 @@ if ($result->num_rows > 0) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Create a purchase order</h1>
+          <h1 class="h3 mb-4 text-gray-800">View purchase order</h1>
 
           <div class="row">
 
@@ -474,14 +580,12 @@ if ($result->num_rows > 0) {
                     <div class="row">
                       <div class="col-9 mt-2">
                        <u> <span class="font-weight-bold">PO NO :</span>
-                        <span ></span></u>
+                        <span ><?php echo $po_no ?></span></u>
                       </div>
                       <div class="col-3 mt-2  text-right pr-4">
                         <span class="text-right font-weight-bold">Date :</span>
                         <span class="text-right">
-                          <?php 
-                          echo date("Y/m/d");
-                          ?>
+                        <?php echo date("d-m-y", strtotime($date));?>
                         </span>
                       </div>
                     </div>
@@ -494,7 +598,7 @@ if ($result->num_rows > 0) {
                             <span><?php echo $vendor_name;?></span><br/>
                             <span><?php echo $vendor_number.", ".$vendor_email; ?></span><br/>
                             <span><?php echo $vendor_address;?></span><br/>
-                            <span><?php echo "GST NO: ". $vendor_gst_no;?></span><br/>
+                            <span><?php if(!empty($vendor_gst_no)){echo "GST NO: ". $vendor_gst_no;} ?></span><br/>
                             
                           </div>
                           <div class="col-4 ">
@@ -507,218 +611,7 @@ if ($result->num_rows > 0) {
                         </div>
 
 
-                        <!-- Table Starts Here -->
-                        <?php
-                        // Item1--------------
-                        $sql1 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item1' ";
-                        $result1 = $conn->query($sql1);
                         
-                        if ($result1->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result1->fetch_assoc()) {
-                            $item1_id = $row['item_id'];
-                            $item1_price = $row['item_price'];
-                            $item1_tax = $row['item_tax'];
-                            $item1_attributes = $row['item_attributes'];
-                            $item1_total = ($item1_price +($item1_tax*$item1_price/100))*$qty1;
-                             
-                          }
-                        } else {
-                          echo "bad results";
-                        }
-                        // Item2--------------
-                        $sql2 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item2' ";
-                        $result2 = $conn->query($sql2);
-                        
-                        if ($result2->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result2->fetch_assoc()) {
-                            $item2_id = $row['item_id'];
-                            $item2_price = $row['item_price'];
-                            $item2_tax = $row['item_tax'];
-                            $item2_attributes = $row['item_attributes'];
-                            $item2_total = ($item2_price +($item2_tax*$item2_price/100))*$qty2;
-                          }
-                        } 
-                        
-                        // Item3--------------
-                        $sql3 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item3' ";
-                        $result3 = $conn->query($sql3);
-                        
-                        if ($result3->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result3->fetch_assoc()) {
-                            $item3_id = $row['item_id'];
-                            $item3_price = $row['item_price'];
-                            $item3_tax = $row['item_tax'];
-                            $item3_attributes = $row['item_attributes'];
-                            $item3_total = ($item3_price +($item3_tax/100*$item3_price))*$qty3;
-                          }
-                        } 
-
-                        // Item4--------------
-                        $sql4 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item4' ";
-                        $result4 = $conn->query($sql4);
-                        
-                        if ($result4->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result4->fetch_assoc()) {
-                            $item4_id = $row['item_id'];
-                            $item4_price = $row['item_price'];
-                            $item4_tax = $row['item_tax'];
-                            $item4_attributes = $row['item_attributes'];
-                            $item4_total = ($item4_price +($item4_tax*$item4_price/100))*$qty4;
-                          }
-                        } 
-
-                        // Item5--------------
-                        $sql5 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item5' ";
-                        $result5 = $conn->query($sql5);
-                        
-                        if ($result5->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result5->fetch_assoc()) {
-                            $item5_id = $row['item_id'];
-                            $item5_price = $row['item_price'];
-                            $item5_tax = $row['item_tax'];
-                            $item5_attributes = $row['item_attributes'];
-                            $item5_total = ($item5_price +($item5_tax*$item5_price/100))*$qty5;
-                          }
-                        } 
-
-                        // Item6--------------
-                        $sql6 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item6' ";
-                        $result6 = $conn->query($sql6);
-                        
-                        if ($result6->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result6->fetch_assoc()) {
-                            $item6_id = $row['item_id'];
-                            $item6_price = $row['item_price'];
-                            $item6_tax = $row['item_tax'];
-                            $item6_attributes = $row['item_attributes'];
-                            $item6_total = ($item6_price +($item6_tax*$item6_price/100))*$qty6;
-                          }
-                        } 
-
-                        // Item7--------------
-                        $sql7 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item7' ";
-                        $result7 = $conn->query($sql7);
-                        
-                        if ($result7->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result7->fetch_assoc()) {
-                            $item7_id = $row['item_id'];
-                            $item7_price = $row['item_price'];
-                            $item7_tax = $row['item_tax'];
-                            $item7_attributes = $row['item_attributes'];
-                            $item7_total = ($item7_price +($item7_tax*$item7_price/100))*$qty7;
-                          }
-                        } 
-                      
-                        // Item8--------------
-                        $sql8 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item8' ";
-                       
-                        $result8 = $conn->query($sql8);
-                        
-                        if ($result8->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result8->fetch_assoc()) {
-                            $item8_id = $row['item_id'];
-                            $item8_price = $row['item_price'];
-                            $item8_tax = $row['item_tax'];
-                            $item8_attributes = $row['item_attributes'];
-                            $item8_total = ($item8_price +($item8_tax*$item8_price/100))*$qty8;
-                          
-                          }
-                        } 
-
-                        // Item9--------------
-                        $sql9 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item9' ";
-                        
-                        $result9 = $conn->query($sql9);
-                        
-                        if ($result9->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result9->fetch_assoc()) {
-                            $item9_id = $row['item_id'];
-                            $item9_price = $row['item_price'];
-                            $item9_tax = $row['item_tax'];
-                            $item9_attributes = $row['item_attributes'];
-                            $item9_total = ($item9_price +($item9_tax*$item9_price/100))*$qty9;
-                            
-                          }
-                        } 
-
-                        // Item10--------------
-                        $sql10 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item10' ";
-                       
-                        $result10 = $conn->query($sql10);
-                        
-                        if ($result10->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result10->fetch_assoc()) {
-                            $item10_id = $row['item_id'];
-                            $item10_price = $row['item_price'];
-                            $item10_tax = $row['item_tax'];
-                            $item10_attributes = $row['item_attributes'];
-                            $item10_total = ($item10_price +($item10_tax*$item10_price/100))*$qty10;
-                            
-                          }
-                        } 
-
-                        // Item11--------------
-                        $sql11 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item11' ";
-                        
-                        $result11 = $conn->query($sql11);
-                        
-                        if ($result11->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result11->fetch_assoc()) {
-                            $item11_id = $row['item_id'];
-                            $item11_price = $row['item_price'];
-                            $item11_tax = $row['item_tax'];
-                            $item11_attributes = $row['item_attributes'];
-                            $item11_total = ($item11_price +($item11_tax*$item11_price/100))*$qty11;
-                            
-                          }
-                        } 
-
-                        // Item12--------------
-                        $sql12 = "SELECT item_id, item_name, item_price,item_tax,item_attributes FROM item_list WHERE item_name  = '$item12' ";
-                        $result12 = $conn->query($sql12);
-                        
-                        if ($result12->num_rows > 0) {
-                          // output data of each row
-                          while($row = $result12->fetch_assoc()) {
-                            $item12_id = $row['item_id'];
-                            $item12_price = $row['item_price'];
-                            $item12_tax = $row['item_tax'];
-                            $item12_attributes = $row['item_attributes'];
-                            $item12_total = ($item12_price +($item12_tax*$item12_price/100))*$qty12;
-                            
-                          }
-                        } 
-
-                        $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_total + $item6_total + $item7_total + $item8_total + $item9_total + $item10_total + $item11_total + $item11_total;
-                        
-                        session_start();
-                        // Set session variables
-                        $_SESSION[item1] = $item1_id;
-                        $_SESSION[item2] = $item2_id;
-                        $_SESSION[item3] = $item3_id;
-                        $_SESSION[item4] = $item4_id;
-                        $_SESSION[item5] = $item5_id;
-                        $_SESSION[item6] = $item6_id;
-                        $_SESSION[item7] = $item7_id;
-                        $_SESSION[item8] = $item8_id;
-                        $_SESSION[item9] = $item9_id;
-                        $_SESSION[item10] = $item10_id;
-                        $_SESSION[item11] = $item11_id;
-                        $_SESSION[item12] = $item12_id;
-
-
-                        ?>
 
 
 

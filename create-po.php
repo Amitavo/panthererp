@@ -1,4 +1,8 @@
 <?php
+// session_start();
+// session_unset();
+// // session_destroy();
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -80,6 +84,7 @@ if ($conn->connect_error) {
           <div class="bg-white py-2 collapse-inner rounded">
             
             <a class="collapse-item active" href="create-po.php">Create PO</a>
+            <a class="collapse-item" href="view_po_all.php">View All PO</a>
             <a class="collapse-item" href="cards.html">Edit PO</a>
           </div>
         </div>
@@ -382,7 +387,7 @@ if ($conn->connect_error) {
                       <div class="col-12">
                         
 
-                        <form action="create-po-final.php" method="post" class="container" >
+                        <form action="create-po-final.php" method="post" class="container " >
                         <div class="row justify-content-between">
                           <div class="">
                             <label for="vendor"><h5>Select A Vendor :</h5></label>
@@ -406,19 +411,20 @@ if ($conn->connect_error) {
                             <button type="button" class="btn btn-success btn-sm ml-2">+ New Item</button>
                             </a>
                           </div>
-                        </div>
+                          </div>
 
-                            <div class="row mt-5 mb-3 ">
+                            <div class="row mt-5 mb-3 border-bottom">
                               <div class="col-2 border border-1 bg-light text-center "><p class="pt-3 font-weight-bold">SR NO</p></div>
-                              <div class="col-4 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">ITEM</p></div>
-                              <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">QTY</p></div>
+                              <div class="col-6 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">ITEM</p></div>
+                              <div class="col-4 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">QTY</p></div>
                             </div>
                             <!-- Table Header Ends -->
 
                             <!-- Table Body Starts -->
-                            <div class="form-row mb-2">
+                            
+                            <div class="form-row mb-2 ">
                               <div class="col-2 "><p class="text-center ">1.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item1" id="item1" class="form-control">'; // Open your drop down box
@@ -432,14 +438,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty1" id="qty1" min="1" max="20000" class="form-control" required />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">2.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item2" id="item2" class="form-control">'; // Open your drop down box
@@ -453,14 +459,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty2" id="qty2" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">3.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item3" id="item3" class="form-control">'; // Open your drop down box
@@ -474,14 +480,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty3" id="qty3" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">4.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item4" id="item4" class="form-control">'; // Open your drop down box
@@ -495,14 +501,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty4" id="qty4" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">5.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item5" id="item5" class="form-control">'; // Open your drop down box
@@ -516,14 +522,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty5" id="qty5" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">6.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item6" id="item6" class="form-control">'; // Open your drop down box
@@ -537,14 +543,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty6" id="qty6" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">7.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item7" id="item7" class="form-control">'; // Open your drop down box
@@ -558,14 +564,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty7" id="qty7" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">8.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item8" id="item8" class="form-control">'; // Open your drop down box
@@ -579,14 +585,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty8" id="qty8" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">9.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item9" id="item9" class="form-control">'; // Open your drop down box
@@ -600,14 +606,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty9" id="qty9" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">10.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item10" id="item10" class="form-control">'; // Open your drop down box
@@ -621,14 +627,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty10" id="qty10" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">11.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item11" id="item11" class="form-control">'; // Open your drop down box
@@ -642,14 +648,14 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty11" id="qty11" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
 
                             <div class="form-row mb-2">
                               <div class="col-2 "><p class="text-center ">12.</p></div>
-                              <div class="col-4 ">
+                              <div class="col-6 ">
                                 <div>
                                 <?php
                                   echo '<select name="item12" id="item12" class="form-control">'; // Open your drop down box
@@ -663,26 +669,36 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-4 ">
                                 <input type="number" name="qty12" id="qty12" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
+
+                            <div class="form-row mb-2">
+                              <div class="col-2 "><p class="text-center "></p></div>
+                              <div class="col-6 ">
+                                <div>
+                                <p class="text-right text-primary font-weight-bold">Enter Shipping cost (if any): </p>
+                                </div>
+                              </div>
+                              <div class="col-4 ">
+                                <input type="number" name="shipping" id="shipping" min="0" max="200000" class="form-control"  />
+                              </div>
+                            </div>
+                            
                             
                             <div class="row ">
-                            
-                            <div class="row col-8 justify-content-end mt-4">
+                              <div class="row col-12 justify-content-end mt-4  p-0">
                                 <button type="reset" class="btn btn-outline-secondary justify-content-end ">Reset</button>
-
-                               <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5" name="POSubmit">Next</button>
+                                <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5 m-0" name="POSubmit">Next</button>
+                              </div>
                             </div>
-
-                            </div>
-
+                           
 
                         </form>
 
 
-                        <!-- Table Header Starts -->
+      
                         
                         
 
