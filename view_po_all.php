@@ -395,9 +395,9 @@ require_once("DB_POS.php");
                           <td><?php echo $vendor_name; ?></td>
                           <td><?php echo $total; ?></td>
                           
-                          <td><a href="view_po_single.php?id=<?php echo $po_no;?>">View</a></td>
-                          <td><a href="update_po.php?id=<?php echo $po_no;?>">Update</a></td>
-                          <td><a href="delete_po.php?id=<?php echo $po_no;?>">Delete</a></td>
+                          <td><a class="btn btn-outline-warning btn-sm " href="view_po_single.php?id=<?php echo $po_no;?>">View</a></td>
+                          <td><a class="btn btn-outline-success btn-sm" href="update_po.php?id=<?php echo $po_no;?>">Update</a></td>
+                          <td><a class="btn btn-outline-danger btn-sm" href="delete_po.php?id=<?php echo $po_no;?>">Delete</a></td>
                       </tr>
                       
                   <?php } ?>

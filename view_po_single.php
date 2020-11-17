@@ -290,7 +290,7 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
           <div class="bg-white py-2 collapse-inner rounded">
             
             <a class="collapse-item " href="create-po.php">Create PO</a>
-            <a class="collapse-item active" href="view-po_all.php">View All PO</a>
+            <a class="collapse-item active" href="view_po_all.php">View All PO</a>
             <a class="collapse-item" href="cards.html">Edit PO</a>
           </div>
         </div>
