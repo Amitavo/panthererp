@@ -1,37 +1,66 @@
+
+
+
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "pos";
 
-if(isset($_POST["Submit"])){
-    if(!empty($_POST['name']) && !empty($_POST['price'])){
-        
-        $Iname = $_POST["name"];
-        $Iprice = $_POST["price"];
-        $Iattributes = $_POST["attributes"];
-        $Itax = $_POST["tax"];
-        $Idescription = $_POST["description"];
-        $Isuppliers = $_POST["suppliers"];
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Start the session
+session_start();
+// print_r($_SESSION);
+$po_no= $_SESSION[po_no];
 
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "pos";
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-        }        
-        $sql = "INSERT INTO item_list (item_name,item_price,item_tax, item_attributes,item_description, item_suppliers)
-        VALUES ('$Iname', '$Iprice', '$Itax ', '$Iattributes','$Idescription', '$Isuppliers')";
-        
-        if (mysqli_query($conn, $sql)) {
+$sql = "UPDATE purchase_order 
+SET vendor_id = $_SESSION[vendor_id],
+    item1_id = $_SESSION[item1],
+    item2_id = $_SESSION[item2],
+    item3_id = $_SESSION[item3],  
+    item4_id = $_SESSION[item4],  
+    item5_id = $_SESSION[item5],  
+    item6_id = $_SESSION[item6],  
+    item7_id =  $_SESSION[item7], 
+    item8_id =  $_SESSION[item8], 
+    item9_id =  $_SESSION[item9], 
+    item10_id = $_SESSION[item10], 
+    item11_id = $_SESSION[item11],  
+    item12_id = $_SESSION[item12],  
+    qty1 = $_SESSION[qty1], 
+    qty2 = $_SESSION[qty2], 
+    qty3 = $_SESSION[qty3], 
+    qty4 = $_SESSION[qty4], 
+    qty5 = $_SESSION[qty5], 
+    qty6 = $_SESSION[qty6], 
+    qty7 = $_SESSION[qty7], 
+    qty8 = $_SESSION[qty8], 
+    qty9 = $_SESSION[qty9], 
+    qty10 = $_SESSION[qty10], 
+    qty11 = $_SESSION[qty11], 
+    qty12 = $_SESSION[qty12],
+    total = $_SESSION[total], 
+    shipping = $_SESSION[shipping] WHERE po_no= $po_no";
+     
+        if ($conn->query($sql)) {
         //   echo "New record created successfully";
-        echo '<script>alert("New item is created successfully")</script>';
+        echo '<script>alert("PO Updated successfully")</script>';
         } else {
           echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-}
-}
+
+
+        
+//todo 
+//fetch data from db with where condition, and save value in a variable
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +74,7 @@ if(isset($_POST["Submit"])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Add New Item</title>
+  <title>Purchase Order</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -58,6 +87,8 @@ if(isset($_POST["Submit"])){
 
 <body id="page-top">
 
+  
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -69,7 +100,7 @@ if(isset($_POST["Submit"])){
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>erp</sup></div>
+        <div class="sidebar-brand-text mx-3">Panther <sup>ERP</sup></div>
       </a>
 
       <!-- Divider -->
@@ -91,7 +122,7 @@ if(isset($_POST["Submit"])){
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item ">
+      <li class="nav-item active">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Purchase Oreder</span>
@@ -100,7 +131,8 @@ if(isset($_POST["Submit"])){
           <div class="bg-white py-2 collapse-inner rounded">
             
             <a class="collapse-item " href="create-po.php">Create PO</a>
-            <a class="collapse-item" href="cards.html">Edit PO</a>
+            <a class="collapse-item " href="view_po_all.php">View All PO</a>
+            <a class="collapse-item active" href="cards.html">Edit PO</a>
           </div>
         </div>
       </li>
@@ -368,90 +400,22 @@ if(isset($_POST["Submit"])){
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Create New Item</h1>
+          <h1 class="h3 mb-4 text-gray-800">Purchase Order has been successfully <span class="text-success font-weight-bold" >Updated.</span></h1>
 
-          <div class="row">
-
-            <div class="col-lg-12">
-
-              <!-- Add New Item Form-->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">New Item</h6>
-                </div>
-                <div class="card-body">
-                  <div class="container">
-                    <div class=" container-fluid ">
-                      <h2 class="text-center font-weight-bold mb-5"><u>Unique International New Item</u></h2>
-                    </div>
-                    <div class="row">
-                      <div class="col-9 mt-2">
-                      </div>
-                      <div class="col-3 mt-2  justify-content-end">
-                        <span class="text-right font-weight-bold">Date :</span>
-                        <span class="text-right">
-                          <?php 
-                          echo date("Y/m/d");
-                          ?>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="row mt-4">
-                      <div class="col-12">
-                          <h3 class="card text-center p-4 bg-light mb-4">Enter New Item Details</h3>
-                          <form action="new-item.php" method="post" class="container" >
-                                <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="name">Item Nane</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="price">Price Per unit/Kg</label>
-                                    <input type="number" class="form-control" id="price" placeholder="Price" name="price">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="tax">Tax (%)</label>
-                                    <input type="number" class="form-control" id="tax" placeholder="GST" name="tax">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                    <label for="attributes">Attributes</label>
-                                    <input type="text" class="form-control" id="attributes" placeholder="Attributes like color/size/weight" name="attributes">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <input type="text" class="form-control" id="description" placeholder="Short Description" name="description">
-                                </div>
-                                <div class="form-group">
-                                    <label for="suppliers">Suppliers</label>
-                                    <input type="text" class="form-control" id="suppliers" placeholder="Suppliers" name="suppliers">
-                                </div>
-                              
-                                
-                             
-                                
-                                    <div class="row pl-3 pr-3 mt-3 justify-content-between">
-                                      <button type="submit" class="btn btn-primary" name="Submit">Create New +</button>
-                                      <button type="reset" class="btn btn-outline-secondary justify-content-end">Reset</button>
-                                    </div>
-                                
-                                
-                        </form>
-                     
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              
-
-            </div>
+          
+          
 
             
 
-          </div>
+              <!-- Purchase Order Form-->
+             
+
+              
+
+           
+
+            
+
 
         </div>
         <!-- /.container-fluid -->
@@ -508,7 +472,7 @@ if(isset($_POST["Submit"])){
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-  
+
 
 </body>
 

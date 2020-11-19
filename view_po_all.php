@@ -369,7 +369,7 @@ require_once("DB_POS.php");
                         </tr>
                       </thead>
                       <?php 
-                      $sql = "SELECT * FROM purchase_order";
+                      $sql = "SELECT * FROM purchase_order ORDER BY po_no DESC" ;
                       $stmt = $conn->query($sql);
                       
                       while ($DataRows = $stmt->fetch()) {

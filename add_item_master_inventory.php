@@ -1,37 +1,18 @@
 <?php
 
-if(isset($_POST["Submit"])){
-    if(!empty($_POST['name']) && !empty($_POST['price'])){
-        
-        $Iname = $_POST["name"];
-        $Iprice = $_POST["price"];
-        $Iattributes = $_POST["attributes"];
-        $Itax = $_POST["tax"];
-        $Idescription = $_POST["description"];
-        $Isuppliers = $_POST["suppliers"];
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "pos";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "pos";
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-        }        
-        $sql = "INSERT INTO item_list (item_name,item_price,item_tax, item_attributes,item_description, item_suppliers)
-        VALUES ('$Iname', '$Iprice', '$Itax ', '$Iattributes','$Idescription', '$Isuppliers')";
-        
-        if (mysqli_query($conn, $sql)) {
-        //   echo "New record created successfully";
-        echo '<script>alert("New item is created successfully")</script>';
-        } else {
-          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-}
-}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +26,7 @@ if(isset($_POST["Submit"])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Add New Item</title>
+  <title>Master Inventory</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,7 +50,7 @@ if(isset($_POST["Submit"])){
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>erp</sup></div>
+        <div class="sidebar-brand-text mx-3">Panther <sup>ERP</sup></div>
       </a>
 
       <!-- Divider -->
@@ -91,7 +72,7 @@ if(isset($_POST["Submit"])){
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item ">
+      <li class="nav-item active">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Purchase Oreder</span>
@@ -99,7 +80,8 @@ if(isset($_POST["Submit"])){
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item " href="create-po.php">Create PO</a>
+            <a class="collapse-item active" href="create-po.php">Create PO</a>
+            <a class="collapse-item" href="view_po_all.php">View All PO</a>
             <a class="collapse-item" href="cards.html">Edit PO</a>
           </div>
         </div>
@@ -368,76 +350,163 @@ if(isset($_POST["Submit"])){
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Create New Item</h1>
+          <h1 class="h3 mb-4 text-gray-800">Create a purchase order</h1>
 
           <div class="row">
 
             <div class="col-lg-12">
 
-              <!-- Add New Item Form-->
+              <!-- Purchase Order Form-->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">New Item</h6>
+                  <div class="row justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary d-inline ml-3 align-self-center">Add Items to Master Invenory</h6>
+                    <div>
+                      <a href="new-vendor.php">
+                        <button type="button" class="btn btn-primary btn-sm "> + New Vendor</button>
+                      </a>
+                      <a href="new-item.php">
+                        <button type="button" class="btn btn-success btn-sm ml-2 mr-3">+ New Item</button>
+                      </a>
+                    </div>
+                  </div>
+                   
                 </div>
                 <div class="card-body">
                   <div class="container">
                     <div class=" container-fluid ">
-                      <h2 class="text-center font-weight-bold mb-5"><u>Unique International New Item</u></h2>
+                      <h2 class="text-center font-weight-bold mb-5"><u>Unique International Master Invontory</u></h2>
                     </div>
+                    <form action="create-po-final.php" method="post" class="container " >
                     <div class="row">
-                      <div class="col-9 mt-2">
+                      <div class="col-3 mt-2">
+                        <span class="font-weight-bold">Seller Invoice No :</span>
+                        
+                          <input type="text" name="inv_no" id="inv_2" class="form-control" />
+                       
+                        <div class=" mt-3">
+                        <span class="font-weight-bold ">Invoice Date :</span>
+                          <input type="date" name="inv_dt" id="inv_dt"  class="form-control "/>
+                        </div>
                       </div>
-                      <div class="col-3 mt-2  justify-content-end">
-                        <span class="text-right font-weight-bold">Date :</span>
-                        <span class="text-right">
+                      <div class="col-6"></div>
+                      <div class="col-3 mt-2">
+                        <p class="text-right font-weight-bold">Date :
+                          <span>
                           <?php 
-                          echo date("Y/m/d");
+                          echo date("d/m/y");
                           ?>
-                        </span>
+                          </span>
+                        </p>
+                        
                       </div>
                     </div>
-                    <div class="row mt-4">
+                    <div class="mt-4">
                       <div class="col-12">
-                          <h3 class="card text-center p-4 bg-light mb-4">Enter New Item Details</h3>
-                          <form action="new-item.php" method="post" class="container" >
-                                <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="name">Item Nane</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="price">Price Per unit/Kg</label>
-                                    <input type="number" class="form-control" id="price" placeholder="Price" name="price">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="tax">Tax (%)</label>
-                                    <input type="number" class="form-control" id="tax" placeholder="GST" name="tax">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                    <label for="attributes">Attributes</label>
-                                    <input type="text" class="form-control" id="attributes" placeholder="Attributes like color/size/weight" name="attributes">
-                                    </div>
+                        
+
+                        
+                        <div class="row justify-content-between">
+                          <div class="">
+                            <label for="vendor"><h6 class="font-weight-bold mb-0">Select A Vendor :</h6></label>
+                            <?php
+                               echo '<select name="vendor" id="vendor" style="width:200px" class="form-control">'; // Open your drop down box
+                               $sql = "SELECT vendor_id, name FROM vendor";
+                               $result = $conn->query($sql);
+   
+                               // Loop through the query results, outputing the options one by one
+                               while ($row = $result->fetch_assoc()) {
+                                 echo '<option value="'. $row["vendor_id"].'">'.$row["name"].'</option>';
+                               }
+                               echo '</select>';// Close your drop down box
+                            ?>
+                          </div>
+                          
+                          </div>
+
+                          
+
+                            <div class=" row mt-5 mb-3 border-bottom">
+                              <div class="col-1 border border-1 bg-light text-center "><p class="pt-3 font-weight-bold">#</p></div>
+                              <div class="col-4 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">ITEM</p></div>
+                              <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">PRICE</p></div>
+                              <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">QTY</p></div>
+                              <div class="col-1 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">TAX</p></div>
+                              <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">TOTAL</p></div>
+                            </div>
+                            <!-- Table Header Ends -->
+
+                            <!-- Table Body Starts -->
+                            
+                            <div class="form-row mb-2 ">
+                              <div class="col-1 "><p class="text-center form-control">1.</p></div>
+                              <div class="col-4 ">
+                                <div>
+                                <?php
+                                  echo '<select name="item1" id="item1" class="form-control">'; // Open your drop down box
+                                  $sql = "SELECT item_name FROM item_list";
+                                  $result = $conn->query($sql);
+                                  // Loop through the query results, outputing the options one by one
+                                  while ($row = $result->fetch_assoc()) {
+                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
+                                  }
+                                  echo '</select>';// Close your drop down box
+                                ?>
                                 </div>
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <input type="text" class="form-control" id="description" placeholder="Short Description" name="description">
-                                </div>
-                                <div class="form-group">
-                                    <label for="suppliers">Suppliers</label>
-                                    <input type="text" class="form-control" id="suppliers" placeholder="Suppliers" name="suppliers">
-                                </div>
-                              
-                                
-                             
-                                
-                                    <div class="row pl-3 pr-3 mt-3 justify-content-between">
-                                      <button type="submit" class="btn btn-primary" name="Submit">Create New +</button>
-                                      <button type="reset" class="btn btn-outline-secondary justify-content-end">Reset</button>
-                                    </div>
-                                
-                                
+                              </div>
+                              <div class="col-2 ">
+                                <input type="number" name="price" id="price" min="1" max="9000000" class="form-control" required />
+                              </div>
+                              <div class="col-2 ">
+                                <input type="number" name="qty1" id="qty1" min="1" max="20000" class="form-control" required />
+                              </div>
+                              <div class="col-1 ">
+                                <input type="number" name="tax" id="qty1" min="1" max="900" class="form-control" required />
+                              </div>
+                              <div class="col-2 ">
+                                <input type="number" name="tax" id="qty1" min="1" max="900" class="form-control" required />
+                              </div>
+                            </div>
+                          
+
+                          
+                            
+                            
+                            
+                            <div class="row ">
+                              <div class="row col-12 justify-content-end mt-4  p-0">
+                                <button type="reset" class="btn btn-outline-secondary justify-content-end ">Reset</button>
+                                <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5 m-0" name="POSubmit">Submit</button>
+                              </div>
+                            </div>
+                           
+
                         </form>
-                     
+
+
+      
+                        
+                        
+
+                        
+                          
+                        
+                        <!-- Table Body Ends -->
+
+                          <!-- Table Footer Starts -->
+                          <!-- <div class="row border-top">
+                            <div class="col-9"></div>
+                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Total Tax: 9999999</p></div>
+                          </div>
+                          <div class="row border-top">
+                            <div class="col-9"></div>
+                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Item Total: 9999999</p></div>
+                          </div>
+                          <div class="row border-top">
+                            <div class="col-9"></div>
+                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Grand Total: 9999999</p></div>
+                          </div> -->
+
                       </div>
 
                     </div>
@@ -508,7 +577,6 @@ if(isset($_POST["Submit"])){
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-  
 
 </body>
 

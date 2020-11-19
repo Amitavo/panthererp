@@ -3,11 +3,17 @@ require_once("DB_POS.php");
 $SearchQueryParameter = $_GET["id"];
 
 
+
+
 $sql = "SELECT * FROM purchase_order WHERE po_no='$SearchQueryParameter' ";
 $stmt = $conn->query($sql);
 while ($DataRows  = $stmt->fetch()) {
    
     $po_no = $DataRows["po_no"];
+    // Start the session
+    session_start();
+    $_SESSION[po_no] = $po_no;
+
     $date = $DataRows["date"];
     $vendor_id = $DataRows["vendor_id"];
     $total = $DataRows["total"];
@@ -413,7 +419,7 @@ while ($DataRows  = $stmt->fetch()) {
                       <div class="col-12">
                         
 
-                        <form action="create-po-final.php" method="post" class="container " >
+                        <form action="update-po-final.php" method="post" class="container " >
                         <div class="row justify-content-between">
                           <div class="">
                             <label for="vendor"><h5>Select A Vendor :</h5></label>
