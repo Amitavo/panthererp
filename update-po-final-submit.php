@@ -16,6 +16,16 @@ if ($conn->connect_error) {
 
 // Start the session
 session_start();
+// if($SESSION[qty2]==null){
+//   $_SESSION[qty2] = "";
+// }
+// if($SESSION[qty3]==null){
+//   $_SESSION[qty3] = "";
+// }
+// if($SESSION[qty4]==null){
+//   $_SESSION[qty4] = "";
+// }
+
 // print_r($_SESSION);
 $po_no= $_SESSION[po_no];
 
@@ -34,6 +44,7 @@ SET vendor_id = $_SESSION[vendor_id],
     item10_id = $_SESSION[item10], 
     item11_id = $_SESSION[item11],  
     item12_id = $_SESSION[item12],  
+    
     qty1 = $_SESSION[qty1], 
     qty2 = $_SESSION[qty2], 
     qty3 = $_SESSION[qty3], 
@@ -45,7 +56,8 @@ SET vendor_id = $_SESSION[vendor_id],
     qty9 = $_SESSION[qty9], 
     qty10 = $_SESSION[qty10], 
     qty11 = $_SESSION[qty11], 
-    qty12 = $_SESSION[qty12],
+    qty12 = $_SESSION[qty12], 
+    
     total = $_SESSION[total], 
     shipping = $_SESSION[shipping] WHERE po_no= $po_no";
      

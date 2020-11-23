@@ -83,14 +83,20 @@ if(isset($_POST["POSubmit"])){
       //   $_SESSION[shipping]= 0;
       // }
       $shipping!== null ? ($_SESSION[shipping] = $shipping) : ($_SESSION[shipping]= 0);
-        echo "<br>Qty1: ".$qty1;
-        echo "<br>Qty2: ".$qty2;
-        echo "<br>Qty3: ".$qty3;
-        echo "<br>Qty4: ".$qty4;
+        // echo "<br>Qty1: ".$qty1;
+        // echo "<br>Qty2: ".$qty2;
+        // echo "<br>Qty3: ".$qty3;
+        // echo "<br>Qty4: ".$qty4;
 
       
 
-        // Converting the values from null to 0
+
+
+
+
+
+
+      // Converting the values from null to 0
         $qty2 === null? $qty2=0:"";
         $qty3 === null? $qty3=0:"";
         $qty4 === null? $qty4=0:"";
@@ -102,7 +108,7 @@ if(isset($_POST["POSubmit"])){
         $qty10 === null? $qty10=0:"";
         $qty11 === null? $qty11=0:"";
         $qty12 === null? $qty12=0:"";
-        // Convertion ends from null to 0
+      // Convertion ends from null to 0
     
       $_SESSION[qty1] = $qty1;
       $_SESSION[qty2] = $qty2;
@@ -770,7 +776,7 @@ if ($result->num_rows > 0) {
 
 
                         ?>
-
+                         
 
 
                         <table class="table  mt-5">
@@ -787,6 +793,7 @@ if ($result->num_rows > 0) {
                           <tbody>
 
                             <?php 
+                             
 
                               if(!empty($qty1) ){
                                 echo "<tr>";

@@ -1,0 +1,15 @@
+.form-control {
+    
+    
+    
+    /* border-radius: 0; */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  body{
+      background-color: #6e707e;
+  }
+  /* .form-row>.col, .form-row>[class*=col-] {
+    BOX-SHADOW: 0 0 black;
+    padding-right: 0;
+    padding-left: 0;
+} */

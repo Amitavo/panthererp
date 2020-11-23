@@ -45,6 +45,33 @@ while ($DataRows  = $stmt->fetch()) {
     $qty10 = $DataRows["qty10"];
     $qty11 = $DataRows["qty11"];
     $qty12 = $DataRows["qty12"];
+
+    echo "<br>Qty1- ".$qty1;
+    echo "<br>Qty2- ".$qty2;
+    echo "<br>Qty3- ".$qty3;
+    echo "<br>Qty4- ".$qty4;
+
+    // Converting the values from null to 0
+
+    
+    $qty2 == 0? $qty2=null:"";
+    $qty3 == 0? $qty3=null:"";
+    $qty4 == 0? $qty4=null:"";
+    $qty5 == 0? $qty5=null:"";
+    $qty6 == 0? $qty6=null:"";
+    $qty7 == 0? $qty7=null:"";
+    $qty8 == 0? $qty8=null:"";
+    $qty9 == 0? $qty9=null:"";
+    $qty10 == 0? $qty10=null:"";
+    $qty11 == 0? $qty11=null:"";
+    $qty12 == 0? $qty12=null:"";
+
+    echo "<br>REV--Qty1- ".$qty1;
+    echo "<br>REV--Qty2- ".$qty2;
+    echo "<br>REV--Qty3- ".$qty3;
+    echo "<br>REV--Qty4- ".$qty4;
+    
+  // Convertion ends from null to 0
     
 }
 

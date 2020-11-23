@@ -33,7 +33,8 @@ if ($conn->connect_error) {
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 
 </head>
 
@@ -349,8 +350,8 @@ if ($conn->connect_error) {
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Create a purchase order</h1>
+      
+ 
 
           <div class="row">
 
@@ -373,16 +374,16 @@ if ($conn->connect_error) {
                    
                 </div>
                 <div class="card-body">
-                  <div class="container">
+                  <div class="container-fluid">
                     <div class=" container-fluid ">
-                      <h2 class="text-center font-weight-bold mb-5"><u>Unique International Master Invontory</u></h2>
+                      <h2 class="text-center font-weight-bold mb-5 border"><u>Unique International Master Invontory </u></h2>
                     </div>
-                    <form action="create-po-final.php" method="post" class="container " >
+                    <form action="create-po-final.php" method="post" class="" >
                     <div class="row">
                       <div class="col-3 mt-2">
                         <span class="font-weight-bold">Seller Invoice No :</span>
                         
-                          <input type="text" name="inv_no" id="inv_2" class="form-control" />
+                          <input type="text" name="inv_no" id="inv_2" class="form-control " />
                        
                         <div class=" mt-3">
                         <span class="font-weight-bold ">Invoice Date :</span>
@@ -429,8 +430,9 @@ if ($conn->connect_error) {
                             <div class=" row mt-5 mb-3 border-bottom">
                               <div class="col-1 border border-1 bg-light text-center "><p class="pt-3 font-weight-bold">#</p></div>
                               <div class="col-4 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">ITEM</p></div>
+                              <div class="col-1 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">HSN</p></div>
                               <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">PRICE</p></div>
-                              <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">QTY</p></div>
+                              <div class="col-1 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">QTY</p></div>
                               <div class="col-1 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">TAX</p></div>
                               <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">TOTAL</p></div>
                             </div>
@@ -454,10 +456,13 @@ if ($conn->connect_error) {
                                 ?>
                                 </div>
                               </div>
+                              <div class="col-1 ">
+                                <input type="text" name="hsn" id="hsn" min="1" max="20000" class="form-control" />
+                              </div>
                               <div class="col-2 ">
                                 <input type="number" name="price" id="price" min="1" max="9000000" class="form-control" required />
                               </div>
-                              <div class="col-2 ">
+                              <div class="col-1 ">
                                 <input type="number" name="qty1" id="qty1" min="1" max="20000" class="form-control" required />
                               </div>
                               <div class="col-1 ">
