@@ -1,10 +1,16 @@
 <?php
-require_once("DB_POS.php");
 
-$SearchQueryParameter = $_GET["id"];
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "pos";
 
-$sql = "DELETE FROM purchase_order WHERE po_no='$SearchQueryParameter' ";
-$execute = $conn->query($sql);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
 
 ?>
@@ -20,31 +26,47 @@ $execute = $conn->query($sql);
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>View all PO</title>
+  <title>Master Inventory</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+  <!-- Jquery CDN required -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 </head>
 
 <body id="page-top">
 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center " href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>erp</sup></div>
+        <div class="sidebar-brand-text mx-3">Panther <sup>ERP</sup></div>
       </a>
 
       <!-- Divider -->
@@ -66,22 +88,23 @@ $execute = $conn->query($sql);
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item ">
+      <!-- Class toggled is added to collapse the sidebar on page load -->
+      <li class="nav-item toggled">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Purchase Oreder</span>
         </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
 
             <a class="collapse-item " href="create-po.php">Create PO</a>
-            <a class="collapse-item active" href="view_po1.php">View All PO</a>
+            <a class="collapse-item" href="view_po_all.php">View All PO</a>
             <a class="collapse-item" href="cards.html">Edit PO</a>
           </div>
         </div>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
+      <!-- Nav Item - Master Inventory Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
@@ -89,7 +112,6 @@ $execute = $conn->query($sql);
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="utilities-color.html">Colors</a>
             <a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
@@ -145,7 +167,7 @@ $execute = $conn->query($sql);
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="rounded-circle border-0 " id="sidebarToggle"></button>
       </div>
 
     </ul>
@@ -343,7 +365,7 @@ $execute = $conn->query($sql);
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
+
 
 
           <div class="row">
@@ -353,57 +375,219 @@ $execute = $conn->query($sql);
               <!-- Purchase Order Form-->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger">Delete Purchase Orders</h6>
+                  <div class="row justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary d-inline ml-3 align-self-center">Add Items to Master Invenory</h6>
+                    <div>
+                      <a href="new-vendor.php">
+                        <button type="button" class="btn btn-primary btn-sm "> + New Vendor</button>
+                      </a>
+                      <a href="new-item.php">
+                        <button type="button" class="btn btn-success btn-sm ml-2 mr-3">+ New Item</button>
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="card-body">
+                  <div class="container-fluid">
+                    <div class=" container-fluid ">
+                      <h2 class="text-center font-weight-bold mb-5 pagetitle"><u>Unique International Master Invontory </u></h2>
+                    </div>
+                    <form action="create-po-final.php" method="post" class="">
+                      <div class="row">
+                        <div class="col-3 mt-2">
+                          <span class="font-weight-bold">Seller Invoice No :</span>
 
-                  <center>
-                    <?php
-                    if ($execute) {
-                      echo "<h3>Purchase order no: " . $SearchQueryParameter . "deleted <span class='text-success'>successfully</span></h3>";
-                    }
-                    ?>
+                          <input type="text" name="inv_no" id="inv_2" class="form-control " />
+
+                          <div class=" mt-3">
+                            <span class="font-weight-bold ">Invoice Date :</span>
+                            <input type="date" name="inv_dt" id="inv_dt" class="form-control " />
+                          </div>
+                        </div>
+                        <div class="col-6"></div>
+                        <div class="col-3 mt-2">
+                          <p class="text-right font-weight-bold">Date :
+                            <span>
+                              <?php
+                              echo date("d/m/y");
+                              ?>
+                            </span>
+                          </p>
+
+                        </div>
+                      </div>
+                      <div class="mt-4">
+                        <div class="col-12">
 
 
 
+                          <div class="row justify-content-between">
+                            <div class="">
+                              <label for="vendor">
+                                <h6 class="font-weight-bold mb-0">Select A Vendor :</h6>
+                              </label>
+                              <?php
+                              echo '<select name="vendor" id="vendor" style="width:200px" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT vendor_id, name FROM vendor";
+                              $result = $conn->query($sql);
+
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_assoc()) {
+                                echo '<option value="' . $row["vendor_id"] . '">' . $row["name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+
+                            </div>
+
+                          </div>
 
 
-                    <a href="view_po_all.php" class="btn btn-primary mt-5">View all PO</a>
-                  </center>
+
+                          <div class=" row mt-5 mb-3 border-bottom">
+                            <div class="col-1 border border-1 bg-light text-center ">
+                              <p class="pt-3 font-weight-bold">#</p>
+                            </div>
+                            <div class="col-3 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">ITEM</p>
+                            </div>
+                            <div class="col-1 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">HSN</p>
+                            </div>
+                            <div class="col-1 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">GST</p>
+                            </div>
+                            <div class="col-1 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">RATE</p>
+                            </div>
+                            <div class="col-1 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">QTY</p>
+                            </div>
+                            <div class="col-2 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">PRICE</p>
+                            </div>
+                            <div class="col-2 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">TOTAL</p>
+                            </div>
+                          </div>
+                          <!-- Table Header Ends -->
+
+                          <!-- Table Body Starts -->
+
+                          <div class="form-row mb-2 ">
+                            <div class="col-1 ">
+                              <p class="text-center form-control">1.</p>
+                            </div>
+                            <div class="col-3 ">
+                              <div>
+
+                                <?php
+                                echo '<select name="item1" id="item1" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
+                                ?>
+                              </div>
+                             
+                            </div>
+                            <div class="col-1 ">
+                              <input type="text" name="hsn" id="hsn" min="1" max="20000" class="form-control" value="234" />
+                            </div>
+                            <div class="col-1">
+                              <input type="number" name="gst" min="1" max="900" class="form-control" id="gst"  />
+                              <span >
+                            </div>
+                            <div class="col-1 ">
+                              <input type="number" name="rate" id="rate" min="1" max="900" class="form-control" required />
+                            </div>
+                            <div class="col-1 ">
+                              <input type="number" name="qty1" id="qty1" min="1" max="20000" class="form-control" required />
+                            </div>
+                            <div class="col-2 ">
+
+                              <input type="number" name="price1" id="price1" min="1" max="9000000" class="form-control" required />
+                            </div>
+                            <div class="col-2 ">
+                              <input type="number" name="total1" id="total2" min="1" max="900" class="form-control" required />
+                            </div>
+                          </div>
+
+                          <div class="row ">
+                            <div class="row col-12 justify-content-end mt-4  p-0">
+                              <button type="reset" class="btn btn-outline-secondary justify-content-end ">Reset</button>
+                              <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5 m-0" name="POSubmit">Submit</button>
+                            </div>
+                          </div>
+
+                    </form>
 
 
+                    <script>
+                    $(document).ready(function() {
+                    $('#item1').change(function() {
+                        
+                        var id = $('#item1').val();
+                        if (id != "") {
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    id: id
+                                },
+                                dataType: "JSON",
+                        success: function(data) {
+                            $('#gst').val(data.gst);
+                            $('#rate').text(data.price);
+                            
+                        }
+                    })
+                } else {
+                    alert("Please Select Employee");
+                   
+                }
+            });
 
+        })
+                    </script>
+                  </div>
                 </div>
               </div>
-
-
-
             </div>
-
-
-
           </div>
 
+
+
         </div>
-        <!-- /.container-fluid -->
+
+
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
 
   </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Your Website 2020</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+
+  <!-- End of Content Wrapper -->
+
+
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
@@ -435,11 +619,10 @@ $execute = $conn->query($sql);
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
 
 </body>
 

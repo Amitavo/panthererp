@@ -1,36 +1,37 @@
 <?php
 
-if(isset($_POST["Submit"])){
-    if(!empty($_POST['name']) && !empty($_POST['price'])){
-        
-        $Iname = $_POST["name"];
-        $Iprice = $_POST["price"];
-        $Iattributes = $_POST["attributes"];
-        $Itax = $_POST["tax"];
-        $Idescription = $_POST["description"];
-        $Isuppliers = $_POST["suppliers"];
+if (isset($_POST["Submit"])) {
+  if (!empty($_POST['name']) && !empty($_POST['price'])) {
+
+    $Iname = $_POST["name"];
+    $Iprice = $_POST["price"];
+    $Iattributes = $_POST["attributes"];
+    $Itax = $_POST["tax"];
+    $Idescription = $_POST["description"];
+    $Isuppliers = $_POST["suppliers"];
+    $Ihsn = $_POST["hsn"];
 
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "pos";
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-        }        
-        $sql = "INSERT INTO item_list (item_name,item_price,item_tax, item_attributes,item_description, item_suppliers)
-        VALUES ('$Iname', '$Iprice', '$Itax ', '$Iattributes','$Idescription', '$Isuppliers')";
-        
-        if (mysqli_query($conn, $sql)) {
-        //   echo "New record created successfully";
-        echo '<script>alert("New item is created successfully")</script>';
-        } else {
-          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-}
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "pos";
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+    $sql = "INSERT INTO item_list (item_name,item_price,item_tax, item_attributes,item_description, item_suppliers, item_hsn)
+        VALUES ('$Iname', '$Iprice', '$Itax ', '$Iattributes','$Idescription', '$Isuppliers', '$Ihsn')";
+
+    if (mysqli_query($conn, $sql)) {
+      //   echo "New record created successfully";
+      echo '<script>alert("New item is created successfully")</script>';
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+  }
 }
 ?>
 
@@ -98,7 +99,7 @@ if(isset($_POST["Submit"])){
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            
+
             <a class="collapse-item " href="create-po.php">Create PO</a>
             <a class="collapse-item" href="cards.html">Edit PO</a>
           </div>
@@ -390,7 +391,7 @@ if(isset($_POST["Submit"])){
                       <div class="col-3 mt-2  justify-content-end">
                         <span class="text-right font-weight-bold">Date :</span>
                         <span class="text-right">
-                          <?php 
+                          <?php
                           echo date("Y/m/d");
                           ?>
                         </span>
@@ -398,46 +399,50 @@ if(isset($_POST["Submit"])){
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                          <h3 class="card text-center p-4 bg-light mb-4">Enter New Item Details</h3>
-                          <form action="new-item.php" method="post" class="container" >
-                                <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="name">Item Nane</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="price">Price Per unit/Kg</label>
-                                    <input type="number" class="form-control" id="price" placeholder="Price" name="price">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="tax">Tax (%)</label>
-                                    <input type="number" class="form-control" id="tax" placeholder="GST" name="tax">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                    <label for="attributes">Attributes</label>
-                                    <input type="text" class="form-control" id="attributes" placeholder="Attributes like color/size/weight" name="attributes">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <input type="text" class="form-control" id="description" placeholder="Short Description" name="description">
-                                </div>
-                                <div class="form-group">
-                                    <label for="suppliers">Suppliers</label>
-                                    <input type="text" class="form-control" id="suppliers" placeholder="Suppliers" name="suppliers">
-                                </div>
-                              
-                                
-                             
-                                
-                                    <div class="row pl-3 pr-3 mt-3 justify-content-between">
-                                      <button type="submit" class="btn btn-primary" name="Submit">Create New +</button>
-                                      <button type="reset" class="btn btn-outline-secondary justify-content-end">Reset</button>
-                                    </div>
-                                
-                                
+                        <h3 class="card text-center p-4 bg-light mb-4">Enter New Item Details</h3>
+                        <form action="new-item.php" method="post" class="container">
+                          <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <label for="name">Item Nane</label>
+                              <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="price">HSN</label>
+                              <input type="text" class="form-control" id="hsn" placeholder="HSN" name="hsn">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="price">Price Per unit/Kg</label>
+                              <input type="number" class="form-control" id="price" placeholder="Price" name="price">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="tax">Tax (%)</label>
+                              <input type="number" class="form-control" id="tax" placeholder="GST" name="tax">
+                            </div>
+                            <div class="form-group col-md-12">
+                              <label for="attributes">Attributes</label>
+                              <input type="text" class="form-control" id="attributes" placeholder="Attributes like color/size/weight" name="attributes">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" placeholder="Short Description" name="description">
+                          </div>
+                          <div class="form-group">
+                            <label for="suppliers">Suppliers</label>
+                            <input type="text" class="form-control" id="suppliers" placeholder="Suppliers" name="suppliers">
+                          </div>
+
+
+
+
+                          <div class="row pl-3 pr-3 mt-3 justify-content-between">
+                            <button type="submit" class="btn btn-primary" name="Submit">Create New +</button>
+                            <button type="reset" class="btn btn-outline-secondary justify-content-end">Reset</button>
+                          </div>
+
+
                         </form>
-                     
+
                       </div>
 
                     </div>
@@ -445,11 +450,11 @@ if(isset($_POST["Submit"])){
                 </div>
               </div>
 
-              
+
 
             </div>
 
-            
+
 
           </div>
 
@@ -508,7 +513,7 @@ if(isset($_POST["Submit"])){
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-  
+
 
 </body>
 

@@ -1,6 +1,3 @@
-
-
-
 <?php
 $servername = "localhost";
 $username = "root";
@@ -27,7 +24,7 @@ session_start();
 // }
 
 // print_r($_SESSION);
-$po_no= $_SESSION[po_no];
+$po_no = $_SESSION[po_no];
 
 
 $sql = "UPDATE purchase_order 
@@ -60,16 +57,16 @@ SET vendor_id = $_SESSION[vendor_id],
     
     total = $_SESSION[total], 
     shipping = $_SESSION[shipping] WHERE po_no= $po_no";
-     
-        if ($conn->query($sql)) {
-        //   echo "New record created successfully";
-        echo '<script>alert("PO Updated successfully")</script>';
-        } else {
-          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
+
+if ($conn->query($sql)) {
+  //   echo "New record created successfully";
+  echo '<script>alert("PO Updated successfully")</script>';
+} else {
+  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
 
 
-        
+
 //todo 
 //fetch data from db with where condition, and save value in a variable
 
@@ -99,7 +96,7 @@ SET vendor_id = $_SESSION[vendor_id],
 
 <body id="page-top">
 
-  
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -141,7 +138,7 @@ SET vendor_id = $_SESSION[vendor_id],
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            
+
             <a class="collapse-item " href="create-po.php">Create PO</a>
             <a class="collapse-item " href="view_po_all.php">View All PO</a>
             <a class="collapse-item active" href="cards.html">Edit PO</a>
@@ -412,21 +409,21 @@ SET vendor_id = $_SESSION[vendor_id],
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Purchase Order has been successfully <span class="text-success font-weight-bold" >Updated.</span></h1>
+          <h1 class="h3 mb-4 text-gray-800">Purchase Order has been successfully <span class="text-success font-weight-bold">Updated.</span></h1>
 
-          
-          
 
-            
 
-              <!-- Purchase Order Form-->
-             
 
-              
 
-           
 
-            
+          <!-- Purchase Order Form-->
+
+
+
+
+
+
+
 
 
         </div>

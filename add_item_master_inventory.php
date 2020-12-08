@@ -12,7 +12,6 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -33,326 +32,34 @@ if ($conn->connect_error) {
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
+
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Jquery CDN required -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 </head>
 
 <body id="page-top">
 
+
   <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper ">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>ERP</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Purchase Oreder</span>
-        </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item active" href="create-po.php">Create PO</a>
-            <a class="collapse-item" href="view_po_all.php">View All PO</a>
-            <a class="collapse-item" href="cards.html">Edit PO</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Master Inventory</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
-    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column ">
 
       <!-- Main Content -->
-      <div id="content">
-
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
-        <!-- End of Topbar -->
+      <div id="content pl-3 pr-3 ">
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-      
- 
-
+        <div class="container-fluid ">
           <div class="row">
 
             <div class="col-lg-12">
@@ -371,218 +78,1052 @@ if ($conn->connect_error) {
                       </a>
                     </div>
                   </div>
-                   
                 </div>
-                <div class="card-body">
+                <div class="card-body pl-4 pr-4">
                   <div class="container-fluid">
-                    <div class=" container-fluid ">
-                      <h2 class="text-center font-weight-bold mb-5 border"><u>Unique International Master Invontory </u></h2>
-                    </div>
-                    <form action="create-po-final.php" method="post" class="" >
+
+                    <h2 class="text-center font-weight-bold mb-5 pagetitle"><u>Unique International Master Invontory </u></h2>
+                  </div>
+                  <!-- ******************* Form starts here ********************-->
+
+                  <form action="submit_master_inventory.php" method="post" class="">
                     <div class="row">
                       <div class="col-3 mt-2">
                         <span class="font-weight-bold">Seller Invoice No :</span>
-                        
-                          <input type="text" name="inv_no" id="inv_2" class="form-control " />
-                       
+
+                        <input type="text" name="inv_no" id="inv_2" class="form-control " />
+
                         <div class=" mt-3">
-                        <span class="font-weight-bold ">Invoice Date :</span>
-                          <input type="date" name="inv_dt" id="inv_dt"  class="form-control "/>
+                          <span class="font-weight-bold ">Invoice Date :</span>
+                          <input type="date" name="inv_dt" id="inv_dt" class="form-control " />
                         </div>
                       </div>
                       <div class="col-6"></div>
                       <div class="col-3 mt-2">
                         <p class="text-right font-weight-bold">Date :
                           <span>
-                          <?php 
-                          echo date("d/m/y");
-                          ?>
+                            <?php
+                            echo date("d/m/y");
+                            ?>
                           </span>
                         </p>
-                        
+
                       </div>
                     </div>
                     <div class="mt-4">
                       <div class="col-12">
-                        
-
-                        
                         <div class="row justify-content-between">
                           <div class="">
-                            <label for="vendor"><h6 class="font-weight-bold mb-0">Select A Vendor :</h6></label>
+                            <label for="vendor">
+                              <h6 class="font-weight-bold mb-0">Select A Vendor :</h6>
+                            </label>
                             <?php
-                               echo '<select name="vendor" id="vendor" style="width:200px" class="form-control">'; // Open your drop down box
-                               $sql = "SELECT vendor_id, name FROM vendor";
-                               $result = $conn->query($sql);
-   
-                               // Loop through the query results, outputing the options one by one
-                               while ($row = $result->fetch_assoc()) {
-                                 echo '<option value="'. $row["vendor_id"].'">'.$row["name"].'</option>';
-                               }
-                               echo '</select>';// Close your drop down box
+                            echo '<select name="vendor" id="vendor" style="width:200px" class="form-control">'; // Open your drop down box
+                            $sql = "SELECT vendor_id, name FROM vendor";
+                            $result = $conn->query($sql);
+                            // Loop through the query results, outputing the options one by one
+                            while ($row = $result->fetch_assoc()) {
+                              echo '<option value="' . $row["vendor_id"] . '">' . $row["name"] . '</option>';
+                            }
+                            echo '</select>'; // Close your drop down box
                             ?>
                           </div>
-                          
+                        </div>
+                        <div class=" row mt-5 mb-3 border-bottom">
+                          <div class="col-1 border border-1 bg-light text-center ">
+                            <p class="pt-3 font-weight-bold">#</p>
                           </div>
-
-                          
-
-                            <div class=" row mt-5 mb-3 border-bottom">
-                              <div class="col-1 border border-1 bg-light text-center "><p class="pt-3 font-weight-bold">#</p></div>
-                              <div class="col-4 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">ITEM</p></div>
-                              <div class="col-1 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">HSN</p></div>
-                              <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">PRICE</p></div>
-                              <div class="col-1 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">QTY</p></div>
-                              <div class="col-1 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">TAX</p></div>
-                              <div class="col-2 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">TOTAL</p></div>
-                            </div>
-                            <!-- Table Header Ends -->
-
-                            <!-- Table Body Starts -->
-                            
-                            <div class="form-row mb-2 ">
-                              <div class="col-1 "><p class="text-center form-control">1.</p></div>
-                              <div class="col-4 ">
-                                <div>
-                                <?php
-                                  echo '<select name="item1" id="item1" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
-                                ?>
-                                </div>
-                              </div>
-                              <div class="col-1 ">
-                                <input type="text" name="hsn" id="hsn" min="1" max="20000" class="form-control" />
-                              </div>
-                              <div class="col-2 ">
-                                <input type="number" name="price" id="price" min="1" max="9000000" class="form-control" required />
-                              </div>
-                              <div class="col-1 ">
-                                <input type="number" name="qty1" id="qty1" min="1" max="20000" class="form-control" required />
-                              </div>
-                              <div class="col-1 ">
-                                <input type="number" name="tax" id="qty1" min="1" max="900" class="form-control" required />
-                              </div>
-                              <div class="col-2 ">
-                                <input type="number" name="tax" id="qty1" min="1" max="900" class="form-control" required />
-                              </div>
-                            </div>
-                          
-
-                          
-                            
-                            
-                            
-                            <div class="row ">
-                              <div class="row col-12 justify-content-end mt-4  p-0">
-                                <button type="reset" class="btn btn-outline-secondary justify-content-end ">Reset</button>
-                                <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5 m-0" name="POSubmit">Submit</button>
-                              </div>
-                            </div>
-                           
-
-                        </form>
-
-
-      
-                        
-                        
-
-                        
-                          
-                        
-                        <!-- Table Body Ends -->
-
-                          <!-- Table Footer Starts -->
-                          <!-- <div class="row border-top">
-                            <div class="col-9"></div>
-                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Total Tax: 9999999</p></div>
+                          <div class="col-3 border border-1 bg-light text-center">
+                            <p class="pt-3 font-weight-bold">ITEM</p>
                           </div>
-                          <div class="row border-top">
-                            <div class="col-9"></div>
-                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Item Total: 9999999</p></div>
+                          <div class="col-1 border border-1 bg-light text-center">
+                            <p class="pt-3 font-weight-bold">HSN</p>
                           </div>
-                          <div class="row border-top">
-                            <div class="col-9"></div>
-                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Grand Total: 9999999</p></div>
-                          </div> -->
+                          <div class="col-1 border border-1 bg-light text-center">
+                            <p class="pt-3 font-weight-bold">GST</p>
+                          </div>
+                          <div class="col-1 border border-1 bg-light text-center">
+                            <p class="pt-3 font-weight-bold">RATE</p>
+                          </div>
+                          <div class="col-1 border border-1 bg-light text-center">
+                            <p class="pt-3 font-weight-bold">QTY</p>
+                          </div>
+                          <div class="col-2 border border-1 bg-light text-center">
+                            <p class="pt-3 font-weight-bold">PRICE</p>
+                          </div>
+                          <div class="col-2 border border-1 bg-light text-center">
+                            <p class="pt-3 font-weight-bold">TOTAL</p>
+                          </div>
+                        </div>
+                        <!-- Table Header Ends -->
 
-                      </div>
+                        <!-- Table Body Starts -->
+                        <!-- First Row -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">1.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
 
-                    </div>
-                  </div>
+                              <?php
+                              echo '<select name="item1" id="item1" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn1" id="hsn1" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst1" min="0" class="form-control" id="gst1" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate1" id="rate1" min="0" class="form-control" required />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty1" id="qty1" min="0" class="form-control" required />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price1" id="price1" min="0" class="form-control" required />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total1" id="total1" min="0" class="form-control" required />
+                          </div>
+                        </div>
+                        <!-- Row 2-->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">2.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item2" id="item2" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn2" id="hsn2" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst2" min="0" class="form-control" id="gst2" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate2" id="rate2" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty2" id="qty2" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price2" id="price2" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total2" id="total2" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 2 ends-->
+
+                        <!-- Row 3-->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">3.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item3" id="item3" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn3" id="hsn3" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst3" id="gst3" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate3" id="rate3" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty3" id="qty3" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price3" id="price3" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total3" id="total3" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 3 ends -->
+
+                        <!-- Row 4 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">4.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item4" id="item4" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn4" id="hsn4" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst4" id="gst4" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate4" id="rate4" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty4" id="qty4" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price4" id="price4" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total4" id="total4" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 4 ends -->
+
+                        <!-- Row 5 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">5.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item5" id="item5" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn5" id="hsn5" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst5" id="gst5" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate5" id="rate5" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty5" id="qty5" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price5" id="price5" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total5" id="total5" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 5 ends -->
+
+                        <!-- Row 6 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">6.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item6" id="item6" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn6" id="hsn6" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst6" id="gst6" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate6" id="rate6" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty6" id="qty6" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price6" id="price6" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total6" id="total6" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 6 ends -->
+
+                        <!-- Row 7 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">7.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item7" id="item7" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn7" id="hsn7" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst7" id="gst7" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate7" id="rate7" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty7" id="qty7" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price7" id="price7" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total7" id="total7" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 7 ends -->
+
+                        <!-- Row 8 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">8.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item8" id="item8" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn8" id="hsn8" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst8" id="gst8" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate8" id="rate8" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty8" id="qty8" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price8" id="price8" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total8" id="total8" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 8 ends -->
+
+                        <!-- Row 9 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">9.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item9" id="item9" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn9" id="hsn9" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst9" id="gst9" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate9" id="rate9" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty9" id="qty9" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price9" id="price9" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total9" id="total9" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 9 ends -->
+
+                        <!-- Row 10 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">10.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item10" id="item10" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn10" id="hsn10" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst10" id="gst10" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate10" id="rate10" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty10" id="qty10" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price10" id="price10" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total10" id="total10" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 10 ends -->
+
+                        <!-- Row 11 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">11.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item11" id="item11" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn11" id="hsn11" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst11" id="gst11" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate11" id="rate11" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty11" id="qty11" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price11" id="price11" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total11" id="total11" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 11 ends -->
+
+                        <!-- Row 12 -->
+                        <div class="form-row mb-2 ">
+                          <div class="col-1 ">
+                            <p class="text-center form-control">12.</p>
+                          </div>
+                          <div class="col-3 ">
+                            <div>
+
+                              <?php
+                              echo '<select name="item12" id="item12" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT * FROM item_list";
+                              $result = $conn->query($sql);
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_array()) {
+                                echo '<option value="' . $row["item_id"] . '">' . $row["item_name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="text" name="hsn12" id="hsn12" class="form-control" />
+                          </div>
+                          <div class="col-1">
+                            <input type="number" name="gst12" id="gst12" min="0" class="form-control" />
+                            <span>
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="rate12" id="rate12" min="0" class="form-control" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="number" name="qty12" id="qty12" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="price12" id="price12" min="0" class="form-control" />
+                          </div>
+                          <div class="col-2 ">
+                            <input type="number" name="total12" id="total12" min="0" class="form-control" />
+                          </div>
+                        </div>
+                        <!-- Row 12 ends -->
+
+                        <div class="row ">
+                          <div class="row col-12 justify-content-end mt-4  p-0">
+                            <button type="reset" class="btn btn-outline-secondary justify-content-end ">Reset</button>
+                            <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5 m-0" name="POSubmit">Submit</button>
+                          </div>
+                        </div>
+                  </form>
                 </div>
               </div>
-
-              
-
             </div>
-
-            
-
           </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
       </div>
     </div>
   </div>
+  <!-- End of Main Content -->
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#item1').change(function() {
+        var id = $('#item1').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn1').val(data.hsn);
+              $('#gst1').val(data.gst);
+              $('#rate1').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price1
+    $('#qty1').change(function() {
+      $("#price1").val(
+        $("#rate1").val() * $("#qty1").val()
+      );
+      //Calculating the value of Total1
+      var price = parseInt($("#price1").val());
+      var gst = parseInt($("#gst1").val());
+      var totalGst = price * gst / 100;
+      $("#total1").val(
+        price + totalGst
+      )
+    })
+    // Second Row Calculation--------------
+    $(document).ready(function() {
+      $('#item2').change(function() {
+        var id = $('#item2').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn2').val(data.hsn);
+              $('#gst2').val(data.gst);
+              $('#rate2').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price2
+    $('#qty2').change(function() {
+      $("#price2").val(
+        $("#rate2").val() * $("#qty2").val()
+      );
+      //Calculating the value of Total2
+      var price = parseInt($("#price2").val());
+      var gst = parseInt($("#gst2").val());
+      var totalGst = price * gst / 100;
+      $("#total2").val(
+        price + totalGst
+      )
+    })
 
+    // Row 3 Calculation--------------
+    $(document).ready(function() {
+      $('#item3').change(function() {
+        var id = $('#item3').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn3').val(data.hsn);
+              $('#gst3').val(data.gst);
+              $('#rate3').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price2
+    $('#qty3').change(function() {
+      $("#price3").val(
+        $("#rate3").val() * $("#qty3").val()
+      );
+      //Calculating the value of Total2
+      var price = parseInt($("#price3").val());
+      var gst = parseInt($("#gst3").val());
+      var totalGst = price * gst / 100;
+      $("#total3").val(
+        price + totalGst
+      )
+    })
+
+    // Row 4 Calculation--------------
+    $(document).ready(function() {
+      $('#item4').change(function() {
+        var id = $('#item4').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn4').val(data.hsn);
+              $('#gst4').val(data.gst);
+              $('#rate4').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price2
+    $('#qty4').change(function() {
+      $("#price4").val(
+        $("#rate4").val() * $("#qty4").val()
+      );
+      //Calculating the value of Total2
+      var price = parseInt($("#price4").val());
+      var gst = parseInt($("#gst4").val());
+      var totalGst = price * gst / 100;
+      $("#total4").val(
+        price + totalGst
+      )
+    })
+
+    // Row 5 Calculation--------------
+    $(document).ready(function() {
+      $('#item5').change(function() {
+        var id = $('#item5').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn5').val(data.hsn);
+              $('#gst5').val(data.gst);
+              $('#rate5').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price2
+    $('#qty5').change(function() {
+      $("#price5").val(
+        $("#rate5").val() * $("#qty5").val()
+      );
+      //Calculating the value of Total2
+      var price = parseInt($("#price5").val());
+      var gst = parseInt($("#gst5").val());
+      var totalGst = price * gst / 100;
+      $("#total5").val(
+        price + totalGst
+      )
+    })
+
+    // Row 6 Calculation--------------
+    $(document).ready(function() {
+      $('#item6').change(function() {
+        var id = $('#item6').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn6').val(data.hsn);
+              $('#gst6').val(data.gst);
+              $('#rate6').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price2
+    $('#qty6').change(function() {
+      $("#price6").val(
+        $("#rate6").val() * $("#qty6").val()
+      );
+      //Calculating the value of Total2
+      var price = parseInt($("#price6").val());
+      var gst = parseInt($("#gst6").val());
+      var totalGst = price * gst / 100;
+      $("#total6").val(
+        price + totalGst
+      )
+    })
+
+    // Row 7 Calculation--------------
+    $(document).ready(function() {
+      $('#item7').change(function() {
+        var id = $('#item7').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn7').val(data.hsn);
+              $('#gst7').val(data.gst);
+              $('#rate7').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price7
+    $('#qty7').change(function() {
+      $("#price7").val(
+        $("#rate7").val() * $("#qty7").val()
+      );
+      //Calculating the value of Total7
+      var price = parseInt($("#price7").val());
+      var gst = parseInt($("#gst7").val());
+      var totalGst = price * gst / 100;
+      $("#total7").val(
+        price + totalGst
+      )
+    })
+
+    // Row 8 Calculation--------------
+    $(document).ready(function() {
+      $('#item8').change(function() {
+        var id = $('#item8').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn8').val(data.hsn);
+              $('#gst8').val(data.gst);
+              $('#rate8').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price8
+    $('#qty8').change(function() {
+      $("#price8").val(
+        $("#rate8").val() * $("#qty8").val()
+      );
+      //Calculating the value of Total2
+      var price = parseInt($("#price8").val());
+      var gst = parseInt($("#gst8").val());
+      var totalGst = price * gst / 100;
+      $("#total8").val(
+        price + totalGst
+      )
+    })
+
+    // Row 9 Calculation--------------
+    $(document).ready(function() {
+      $('#item9').change(function() {
+        var id = $('#item9').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn9').val(data.hsn);
+              $('#gst9').val(data.gst);
+              $('#rate9').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price9
+    $('#qty9').change(function() {
+      $("#price9").val(
+        $("#rate9").val() * $("#qty9").val()
+      );
+      //Calculating the value of Total9
+      var price = parseInt($("#price9").val());
+      var gst = parseInt($("#gst9").val());
+      var totalGst = price * gst / 100;
+      $("#total9").val(
+        price + totalGst
+      )
+    })
+
+    // Row 10 Calculation--------------
+    $(document).ready(function() {
+      $('#item10').change(function() {
+        var id = $('#item10').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn10').val(data.hsn);
+              $('#gst10').val(data.gst);
+              $('#rate10').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price10
+    $('#qty10').change(function() {
+      $("#price10").val(
+        $("#rate10").val() * $("#qty10").val()
+      );
+      //Calculating the value of Total10
+      var price = parseInt($("#price10").val());
+      var gst = parseInt($("#gst10").val());
+      var totalGst = price * gst / 100;
+      $("#total10").val(
+        price + totalGst
+      )
+    })
+
+    // Row 11 Calculation--------------
+    $(document).ready(function() {
+      $('#item11').change(function() {
+        var id = $('#item11').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn11').val(data.hsn);
+              $('#gst11').val(data.gst);
+              $('#rate11').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price11
+    $('#qty11').change(function() {
+      $("#price11").val(
+        $("#rate11").val() * $("#qty11").val()
+      );
+      //Calculating the value of Total11
+      var price = parseInt($("#price11").val());
+      var gst = parseInt($("#gst11").val());
+      var totalGst = price * gst / 100;
+      $("#total11").val(
+        price + totalGst
+      )
+    })
+
+    // Row 12 Calculation--------------
+    $(document).ready(function() {
+      $('#item12').change(function() {
+        var id = $('#item12').val();
+        if (id != "") {
+          $.ajax({
+            url: "fetch.php",
+            method: "POST",
+            data: {
+              id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+              $('#hsn12').val(data.hsn);
+              $('#gst12').val(data.gst);
+              $('#rate12').val(data.price);
+            }
+          })
+        } else {
+          alert("Please Select item");
+        }
+      });
+    })
+    // Calculating the value of Price11
+    $('#qty12').change(function() {
+      $("#price12").val(
+        $("#rate12").val() * $("#qty12").val()
+      );
+      //Calculating the value of Total11
+      var price = parseInt($("#price12").val());
+      var gst = parseInt($("#gst12").val());
+      var totalGst = price * gst / 100;
+      $("#total12").val(
+        price + totalGst
+      )
+    })
+  </script>
 </body>
 
 </html>
