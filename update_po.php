@@ -92,7 +92,7 @@ while ($DataRows  = $stmt->fetch()) {
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -415,25 +415,28 @@ while ($DataRows  = $stmt->fetch()) {
                     <div class=" container-fluid ">
                       <h2 class="text-center font-weight-bold mb-5"><u>Unique International Purchase Order</u></h2>
                     </div>
-                    <div class="row">
-                      <div class="col-9 mt-2">
-                        <span class="font-weight-bold">PO NO :</span>
-                        <span><?php echo $po_no ?></span>
+
+                    <!-- Form Starts Here` -->
+                    <form action="update-po-final.php" method="post" class="container ">
+                      <div class="row">
+                        <div class="col-9  p-0 m-0 mt-2">
+                          <span class="font-weight-bold">PO NO :</span>
+                          <input name="po_no" value="<?php echo $po_no ?>" style="width:100px; border:none;"></input>
+                        </div>
+                        <div class="col-3 mt-2  justify-content-end">
+                          <span class="text-right font-weight-bold">Date :</span>
+                          <span class="text-right">
+                            <?php
+                            echo date("d-m-y", strtotime($date));
+                            ?>
+                          </span>
+                        </div>
                       </div>
-                      <div class="col-3 mt-2  justify-content-end">
-                        <span class="text-right font-weight-bold">Date :</span>
-                        <span class="text-right">
-                          <?php
-                          echo date("d-m-y", strtotime($date));
-                          ?>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="row mt-4">
-                      <div class="col-12">
+                      <div class="row mt-4">
+                        <div class="col-12">
 
 
-                        <form action="update-po-final.php" method="post" class="container ">
+
                           <div class="row justify-content-between">
                             <div class="">
                               <label for="vendor">
@@ -465,6 +468,7 @@ while ($DataRows  = $stmt->fetch()) {
                             </div>
                           </div>
 
+                          <!-- Table Header Starts -->
                           <div class="row mt-5 mb-3 border-bottom">
                             <div class="col-2 border border-1 bg-light text-center ">
                               <p class="pt-3 font-weight-bold">SR NO</p>
@@ -840,65 +844,42 @@ while ($DataRows  = $stmt->fetch()) {
                           </div>
 
 
-                        </form>
+                    </form>
 
 
-
-
-
-
-
-
-
-                        <!-- Table Body Ends -->
-
-                        <!-- Table Footer Starts -->
-                        <!-- <div class="row border-top">
-                            <div class="col-9"></div>
-                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Total Tax: 9999999</p></div>
-                          </div>
-                          <div class="row border-top">
-                            <div class="col-9"></div>
-                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Item Total: 9999999</p></div>
-                          </div>
-                          <div class="row border-top">
-                            <div class="col-9"></div>
-                            <div class="col-3 text-right mt-4"><p class="font-weight-bold">Grand Total: 9999999</p></div>
-                          </div> -->
-
-                      </div>
-
-                    </div>
                   </div>
+
                 </div>
               </div>
-
-
-
             </div>
-
-
-
           </div>
 
+
+
         </div>
-        <!-- /.container-fluid -->
+
+
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Your Website 2020</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->

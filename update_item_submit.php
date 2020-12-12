@@ -1,57 +1,40 @@
 <?php
-require_once("DB_POS_sqli.php");
+// Updating the Item
+if (isset($_POST["Submit"])) {
+  if (!empty($_POST['name'])) {
 
-// Start the session
-session_start();
+    $Iname = $_POST["name"];
+    $Iprice = $_POST["price"];
+    $Iattributes = $_POST["attributes"];
+    $Itax = $_POST["tax"];
+    $Idescription = $_POST["description"];
+    $Isuppliers = $_POST["suppliers"];
+    $Ihsn = $_POST["hsn"];
+    $Iqty = $_POST["qty"];
+    $I_id = $_POST["id"];
 
 
+    require_once("DB_POS_sqli.php");
 
-$po_no = $_SESSION["po_no"];
+    $sql = "UPDATE item_list 
+    SET item_name = '$Iname',
+        item_hsn = '$Ihsn', 
+        item_price = '$Iprice',
+        item_tax =  '$Itax',
+        item_attributes = '$Iattributes',
+        item_description = '$Idescription',
+        item_qty = '$Iqty',
+        item_suppliers='$Isuppliers' WHERE item_id = $I_id";
 
 
-$sql = "UPDATE purchase_order 
-SET vendor_id = $_SESSION[vendor_id],
-    item1_id = $_SESSION[item1],
-    item2_id = $_SESSION[item2],
-    item3_id = $_SESSION[item3],  
-    item4_id = $_SESSION[item4],  
-    item5_id = $_SESSION[item5],  
-    item6_id = $_SESSION[item6],  
-    item7_id =  $_SESSION[item7], 
-    item8_id =  $_SESSION[item8], 
-    item9_id =  $_SESSION[item9], 
-    item10_id = $_SESSION[item10], 
-    item11_id = $_SESSION[item11],  
-    item12_id = $_SESSION[item12],  
-    
-    qty1 = $_SESSION[qty1], 
-    qty2 = $_SESSION[qty2], 
-    qty3 = $_SESSION[qty3], 
-    qty4 = $_SESSION[qty4], 
-    qty5 = $_SESSION[qty5], 
-    qty6 = $_SESSION[qty6], 
-    qty7 = $_SESSION[qty7], 
-    qty8 = $_SESSION[qty8], 
-    qty9 = $_SESSION[qty9], 
-    qty10 = $_SESSION[qty10], 
-    qty11 = $_SESSION[qty11], 
-    qty12 = $_SESSION[qty12], 
-    
-    total = $_SESSION[total], 
-    shipping = $_SESSION[shipping] WHERE po_no= $po_no";
-
-if ($conn->query($sql)) {
-  //   echo "New record created successfully";
-  echo '<script>alert("PO Updated successfully")</script>';
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    if (mysqli_query($conn, $sql)) {
+      //   echo "New record created successfully";
+      echo '<script>alert("Item Updated successfully")</script>';
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+  }
 }
-
-
-
-//todo 
-//fetch data from db with where condition, and save value in a variable
-
 ?>
 
 <!DOCTYPE html>
@@ -391,7 +374,7 @@ if ($conn->query($sql)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Purchase Order has been successfully <span class="text-success font-weight-bold">Updated.</span></h1>
+          <h1 class="h3 mb-4 text-gray-800">Item updated <span class="text-success font-weight-bold">successfully.</span></h1>
 
 
 

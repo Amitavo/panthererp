@@ -1,56 +1,19 @@
 <?php
-require_once("DB_POS_sqli.php");
-
-// Start the session
-session_start();
-
-
-
-$po_no = $_SESSION["po_no"];
-
-
-$sql = "UPDATE purchase_order 
-SET vendor_id = $_SESSION[vendor_id],
-    item1_id = $_SESSION[item1],
-    item2_id = $_SESSION[item2],
-    item3_id = $_SESSION[item3],  
-    item4_id = $_SESSION[item4],  
-    item5_id = $_SESSION[item5],  
-    item6_id = $_SESSION[item6],  
-    item7_id =  $_SESSION[item7], 
-    item8_id =  $_SESSION[item8], 
-    item9_id =  $_SESSION[item9], 
-    item10_id = $_SESSION[item10], 
-    item11_id = $_SESSION[item11],  
-    item12_id = $_SESSION[item12],  
-    
-    qty1 = $_SESSION[qty1], 
-    qty2 = $_SESSION[qty2], 
-    qty3 = $_SESSION[qty3], 
-    qty4 = $_SESSION[qty4], 
-    qty5 = $_SESSION[qty5], 
-    qty6 = $_SESSION[qty6], 
-    qty7 = $_SESSION[qty7], 
-    qty8 = $_SESSION[qty8], 
-    qty9 = $_SESSION[qty9], 
-    qty10 = $_SESSION[qty10], 
-    qty11 = $_SESSION[qty11], 
-    qty12 = $_SESSION[qty12], 
-    
-    total = $_SESSION[total], 
-    shipping = $_SESSION[shipping] WHERE po_no= $po_no";
-
-if ($conn->query($sql)) {
-  //   echo "New record created successfully";
-  echo '<script>alert("PO Updated successfully")</script>';
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+require_once('DB_POS.php');
+$SearchQueryParameter = $_GET["id"];
+$sql = "SELECT * FROM item_list WHERE item_id='$SearchQueryParameter' ";
+$stmt = $conn->query($sql);
+while ($DataRows  = $stmt->fetch()) {
+  $id = $SearchQueryParameter;
+  $name = $DataRows["item_name"];
+  $hsn = $DataRows["item_hsn"];
+  $price = $DataRows["item_price"];
+  $gst = $DataRows["item_tax"];
+  $attributes = $DataRows["item_attributes"];
+  $description = $DataRows["item_description"];
+  $qty = $DataRows["item_qty"];
+  $suppliers = $DataRows["item_suppliers"];
 }
-
-
-
-//todo 
-//fetch data from db with where condition, and save value in a variable
 
 ?>
 
@@ -65,7 +28,7 @@ if ($conn->query($sql)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Purchase Order</title>
+  <title>Add New Item</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,8 +41,6 @@ if ($conn->query($sql)) {
 
 <body id="page-top">
 
-
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -91,7 +52,7 @@ if ($conn->query($sql)) {
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>ERP</sup></div>
+        <div class="sidebar-brand-text mx-3">Panther <sup>erp</sup></div>
       </a>
 
       <!-- Divider -->
@@ -113,7 +74,7 @@ if ($conn->query($sql)) {
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Purchase Oreder</span>
@@ -122,8 +83,7 @@ if ($conn->query($sql)) {
           <div class="bg-white py-2 collapse-inner rounded">
 
             <a class="collapse-item " href="create-po.php">Create PO</a>
-            <a class="collapse-item " href="view_po_all.php">View All PO</a>
-            <a class="collapse-item active" href="cards.html">Edit PO</a>
+            <a class="collapse-item" href="cards.html">Edit PO</a>
           </div>
         </div>
       </li>
@@ -391,22 +351,86 @@ if ($conn->query($sql)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Purchase Order has been successfully <span class="text-success font-weight-bold">Updated.</span></h1>
+
+
+          <div class="row">
+
+            <div class="col-lg-12">
+
+              <!-- Add New Item Form-->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">View Item</h6>
+                </div>
+                <div class="card-body">
+                  <div class="container">
+
+                    <div class="row">
+                      <div class="col-9 mt-2">
+                      </div>
+
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-12">
+                        <h3 class="card text-center p-4 bg-light mb-4"><span class="text-primary"><?php echo $name ?></span></h3>
+                        <form action="new-item.php" method="post" class="container">
+                          <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <label for="name">Item Nane</label>
+                              <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name ?>">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="price">HSN</label>
+                              <input type="text" class="form-control" id="hsn" placeholder="HSN" name="hsn" value="<?php echo $hsn ?>">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="price">Price Per unit/Kg</label>
+                              <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="<?php echo $price ?>">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="tax">Tax (%)</label>
+                              <input type="number" class="form-control" id="tax" placeholder="GST" name="tax" value="<?php echo $gst ?>">
+                            </div>
+                            <div class="form-group col-md-12">
+                              <label for="attributes">Attributes</label>
+                              <input type="text" class="form-control" id="attributes" placeholder="Attributes like color/size/weight" name="attributes" value="<?php echo $attributes ?>">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" placeholder="Short Description" name="description" value="<?php echo $description ?>">
+                          </div>
+                          <div class="form-group">
+                            <label for="suppliers">Suppliers</label>
+                            <input type="text" class="form-control" id="suppliers" placeholder="Suppliers" name="suppliers" value="<?php echo $suppliers ?>">
+                          </div>
+                          <div class="form-group">
+                            <label for="qty">Total Quantity</label>
+                            <input type="number" class="form-control" id="qty" placeholder="qty" name="qty" value="<?php echo $qty ?>">
+                          </div>
 
 
 
 
 
 
-          <!-- Purchase Order Form-->
+
+                        </form>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
 
+            </div>
 
 
 
-
-
+          </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -468,6 +492,3 @@ if ($conn->query($sql)) {
 </body>
 
 </html>
-<?php
-print_r($_SESSION);
-?>
