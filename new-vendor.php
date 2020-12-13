@@ -1,36 +1,36 @@
 <?php
 
 
-if(isset($_POST["Submit"])){
-    if(!empty($_POST['name']) && !empty($_POST['mobile'])){
-        
-        $Vname = $_POST["name"];
-        $email = $_POST["email"];
-        $mobile = $_POST["mobile"];
-        $address = $_POST["address"];
-        $gst = $_POST["gst"];
-        
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "pos";
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-}        
-        $sql = "INSERT INTO vendor (name,number,address,email, gst_no)
+if (isset($_POST["Submit"])) {
+  if (!empty($_POST['name']) && !empty($_POST['mobile'])) {
+
+    $Vname = $_POST["name"];
+    $email = $_POST["email"];
+    $mobile = $_POST["mobile"];
+    $address = $_POST["address"];
+    $gst = $_POST["gst"];
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "pos";
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+    $sql = "INSERT INTO vendor (name,number,address,email, gst_no)
         VALUES ('$Vname', '$mobile', '$address','$email', '$gst')";
-        
-        
-        if (mysqli_query($conn, $sql)) {
-        //   echo "New record created successfully";
-        echo '<script>alert("New record created successfully")</script>';
-        } else {
-          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-}
+
+
+    if (mysqli_query($conn, $sql)) {
+      //   echo "New record created successfully";
+      echo '<script>alert("New record created successfully")</script>';
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+  }
 }
 
 ?>
@@ -62,119 +62,7 @@ if(isset($_POST["Submit"])){
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>erp</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item ">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Purchase Oreder</span>
-        </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item " href="create-po.php">Create PO</a>
-            <a class="collapse-item" href="cards.html">Edit PO</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Master Inventory</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
-    <!-- End of Sidebar -->
+    <?php include("include/sidebar.php") ?>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -391,7 +279,7 @@ if(isset($_POST["Submit"])){
                       <div class="col-3 mt-2  justify-content-end">
                         <span class="text-right font-weight-bold">Date :</span>
                         <span class="text-right">
-                          <?php 
+                          <?php
                           echo date("Y/m/d");
                           ?>
                         </span>
@@ -399,40 +287,40 @@ if(isset($_POST["Submit"])){
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                          <h3 class="card text-center p-4 bg-light mb-4">Enter New Vendor Details</h3>
-                          <form action="new-vendor.php" method="post" class="container" >
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                    <label for="name">Vendor Nane</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="email">Email Id</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    <label for="mobile">Mobile No</label>
-                                    <input type="number" class="form-control" id="mobile" placeholder="Mobile no" name="mobile">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address">
-                                </div>
-                                <div class="form-group">
-                                    <label for="gst">GST No</label>
-                                    <input type="text" class="form-control" id="gst" placeholder="GST number" name="gst">
-                                </div>
-                              
-                                
-                             
-                                
-                                    <button type="submit" class="btn btn-primary" name="Submit">Create New +</button>
-                                    <button type="reset" class="btn btn-outline-secondary justify-content-end">Reset</button>
-                                
-                                
+                        <h3 class="card text-center p-4 bg-light mb-4">Enter New Vendor Details</h3>
+                        <form action="new-vendor.php" method="post" class="container">
+                          <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <label for="name">Vendor Nane</label>
+                              <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="email">Email Id</label>
+                              <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="mobile">Mobile No</label>
+                              <input type="number" class="form-control" id="mobile" placeholder="Mobile no" name="mobile">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address">
+                          </div>
+                          <div class="form-group">
+                            <label for="gst">GST No</label>
+                            <input type="text" class="form-control" id="gst" placeholder="GST number" name="gst">
+                          </div>
+
+
+
+
+                          <button type="submit" class="btn btn-primary" name="Submit">Create New +</button>
+                          <button type="reset" class="btn btn-outline-secondary justify-content-end">Reset</button>
+
+
                         </form>
-                     
+
                       </div>
 
                     </div>
@@ -440,11 +328,11 @@ if(isset($_POST["Submit"])){
                 </div>
               </div>
 
-              
+
 
             </div>
 
-            
+
 
           </div>
 
@@ -503,7 +391,7 @@ if(isset($_POST["Submit"])){
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-  
+
 
 </body>
 
