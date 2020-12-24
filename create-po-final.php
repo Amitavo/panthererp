@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 if (isset($_POST["POSubmit"])) {
-  if ($_POST[item1] !== "Select a Item --") {
+  if ($_POST["item1"] !== "Select a Item --") {
     $vendor = $_POST["vendor"];
     $item1 = $_POST["item1"];
 
@@ -21,47 +21,47 @@ if (isset($_POST["POSubmit"])) {
     if (!empty($_POST['shipping'])) {
       $shipping = $_POST['shipping'];
     }
-    if (!empty($_POST['qty2']) && $_POST[item2] !== "Select a Item --") {
+    if (!empty($_POST['qty2']) && $_POST["item2"] !== "Select a Item --") {
       $item2 = $_POST["item2"];
       $qty2 = $_POST["qty2"];
     }
-    if (!empty($_POST['qty3']) && $_POST[item3] !== "Select a Item --") {
+    if (!empty($_POST['qty3']) && $_POST["item3"] !== "Select a Item --") {
       $item3 = $_POST["item3"];
       $qty3 = $_POST["qty3"];
     }
-    if (!empty($_POST['qty4']) && $_POST[item4] !== "Select a Item --") {
+    if (!empty($_POST['qty4']) && $_POST["item4"] !== "Select a Item --") {
       $item4 = $_POST["item4"];
       $qty4 = $_POST["qty4"];
     }
-    if (!empty($_POST['qty5']) && $_POST[item5] !== "Select a Item --") {
+    if (!empty($_POST['qty5']) && $_POST["item5"] !== "Select a Item --") {
       $item5 = $_POST["item5"];
       $qty5 = $_POST["qty5"];
     }
-    if (!empty($_POST['qty6']) && $_POST[item6] !== "Select a Item --") {
+    if (!empty($_POST['qty6']) && $_POST["item6"] !== "Select a Item --") {
       $item6 = $_POST["item6"];
       $qty6 = $_POST["qty6"];
     }
-    if (!empty($_POST['qty7']) && $_POST[item7] !== "Select a Item --") {
+    if (!empty($_POST['qty7']) && $_POST["item7"] !== "Select a Item --") {
       $item7 = $_POST["item7"];
       $qty7 = $_POST["qty7"];
     }
-    if (!empty($_POST['qty8']) && $_POST[item8] !== "Select a Item --") {
+    if (!empty($_POST['qty8']) && $_POST["item8"] !== "Select a Item --") {
       $item8 = $_POST["item8"];
       $qty8 = $_POST["qty8"];
     }
-    if (!empty($_POST['qty9']) && $_POST[item9] !== "Select a Item --") {
+    if (!empty($_POST['qty9']) && $_POST["item9"] !== "Select a Item --") {
       $item9 = $_POST["item9"];
       $qty9 = $_POST["qty9"];
     }
-    if (!empty($_POST['qty10']) && $_POST[item10] !== "Select a Item --") {
+    if (!empty($_POST['qty10']) && $_POST["item10"] !== "Select a Item --") {
       $item10 = $_POST["item10"];
       $qty10 = $_POST["qty10"];
     }
-    if (!empty($_POST['qty11']) && $_POST[item11] !== "Select a Item --") {
+    if (!empty($_POST['qty11']) && $_POST["item11"] !== "Select a Item --") {
       $item11 = $_POST["item11"];
       $qty11 = $_POST["qty11"];
     }
-    if (!empty($_POST['qty12']) && $_POST[item12] !== "Select a Item --") {
+    if (!empty($_POST['qty12']) && $_POST["item12"] !== "Select a Item --") {
       $item12 = $_POST["item12"];
       $qty12 = $_POST["qty12"];
     }
@@ -70,22 +70,22 @@ if (isset($_POST["POSubmit"])) {
   session_start();
   // Set session variables
 
-  $_SESSION[vendor_id] = $vendor;
-  $_SESSION[shipping] = $shipping;
+  $_SESSION["vendor_id"] = $vendor;
+  $_SESSION["shipping"] = $shipping;
 
 
-  $_SESSION[qty1] = $qty1;
-  $_SESSION[qty2] = $qty2;
-  $_SESSION[qty3] = $qty3;
-  $_SESSION[qty4] = $qty4;
-  $_SESSION[qty5] = $qty5;
-  $_SESSION[qty6] = $qty6;
-  $_SESSION[qty7] = $qty7;
-  $_SESSION[qty8] = $qty8;
-  $_SESSION[qty9] = $qty9;
-  $_SESSION[qty10] = $qty10;
-  $_SESSION[qty11] = $qty11;
-  $_SESSION[qty12] = $qty12;
+  $_SESSION["qty1"] = $qty1;
+  $_SESSION["qty2"] = $qty2;
+  $_SESSION["qty3"] = $qty3;
+  $_SESSION["qty4"] = $qty4;
+  $_SESSION["qty5"] = $qty5;
+  $_SESSION["qty6"] = $qty6;
+  $_SESSION["qty7"] = $qty7;
+  $_SESSION["qty8"] = $qty8;
+  $_SESSION["qty9"] = $qty9;
+  $_SESSION["qty10"] = $qty10;
+  $_SESSION["qty11"] = $qty11;
+  $_SESSION["qty12"] = $qty12;
 }
 
 // Filtering Data--------------------------------

@@ -1,5 +1,9 @@
 <!-- Sidebar -->
+
+
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -23,9 +27,7 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
+
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item ">
@@ -37,11 +39,27 @@
             <div class="bg-white py-2 collapse-inner rounded">
 
                 <a class="collapse-item " href="create-po.php">Create PO</a>
-                <a class="collapse-item" href="cards.html">Edit PO</a>
+                <a class="collapse-item" href="cards.html">Manage PO</a>
             </div>
         </div>
     </li>
 
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1" aria-expanded="true" aria-controls="collapseUtilities1">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Master Inventory</span>
+        </a>
+        <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Utilities:</h6>
+                <a class="collapse-item" href="utilities-color.html">Colors</a>
+                <a class="collapse-item" href="utilities-border.html">Borders</a>
+                <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                <a class="collapse-item" href="utilities-other.html">Other</a>
+            </div>
+        </div>
+    </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -111,3 +129,6 @@
 
 </ul>
 <!-- End of Sidebar -->
+</body>
+
+</html>
