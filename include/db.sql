@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 13, 2020 at 10:20 AM
+-- Generation Time: Dec 24, 2020 at 04:03 PM
 -- Server version: 5.7.30
 -- PHP Version: 7.4.9
 
@@ -38,9 +38,9 @@ CREATE TABLE `item_list` (
 
 INSERT INTO `item_list` (`item_id`, `item_name`, `item_hsn`, `item_price`, `item_tax`, `item_attributes`, `item_description`, `item_qty`, `item_suppliers`) VALUES
 (0, 'Select a Item --', NULL, 0, 0, 'aa', 'aa', 0, 'aa'),
-(1, 'Indicators', '2242', 50, 10, 'Yellow', 'Front Indicators', 10, 'minda'),
+(1, 'Indicators', '2242', 50, 10, 'Yellow', 'Front Indicators', 82, 'minda'),
 (2, 'Rim', '3324', 200, 12, 'black', 'Black front rim', 2, ''),
-(3, 'Tyre 17inch front', '234', 102, 14, 'fornt tyre ak', 'Front tyre', 3, 'Ralco,Ceat'),
+(3, 'Tyre 17inch front', '234', 102, 14, 'fornt tyre ak', 'Front tyre', 26, 'Ralco,Ceat'),
 (21, 'Roof', '123', 2000, 18, 'Metal Roof', 'Raw metal roof with powder coating', 4, 'Ali roofs'),
 (22, 'item8', '234', 200, 28, 'red in color', 'sdfsafd', 5, 'Rohit'),
 (23, 'Handle Lock', '', 85, 12, 'Small size', 'Small size handle lock', 6, 'A,B,C'),
@@ -139,7 +139,9 @@ INSERT INTO `purchase_order` (`po_no`, `date`, `vendor_id`, `item1_id`, `item2_i
 (43, '2020-12-07 07:21:47', 0, 1, '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '', '', '', '', '', '', '', '', 55, '', NULL),
 (44, '2020-12-08 13:41:47', 2, 2, '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '', '', '', '', '', '', '', '', 225, '1', NULL),
 (45, '2020-12-08 13:44:21', 1, 1, '2', '3', '', '', '', '', '', '', '', '', '', 2, '3', '4', '', '', '', '', '', '', '', '', '', 1333, '99', NULL),
-(46, '2020-12-13 08:13:55', 1, 2, '', '', '', '', '', '', '', '', '', '', '', 122, '', '', '', '', '', '', '', '', '', '', '', 27340, '12', NULL);
+(46, '2020-12-13 08:13:55', 1, 2, '', '', '', '', '', '', '', '', '', '', '', 122, '', '', '', '', '', '', '', '', '', '', '', 27340, '12', NULL),
+(47, '2020-12-15 18:38:27', 1, 1, '2', '33', '23', '', '', '', '', '', '', '', '', 200, '400', '500', '344', '', '', '', '', '', '', '', '', 1313849, '500', NULL),
+(48, '2020-12-22 17:13:34', 1, 2, '3', '', '', '', '', '', '', '', '', '', '', 2, '4', '', '', '', '', '', '', '', '', '', '', 913, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -204,7 +206,7 @@ ALTER TABLE `item_list`
 -- AUTO_INCREMENT for table `purchase_order`
 --
 ALTER TABLE `purchase_order`
-  MODIFY `po_no` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `po_no` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `vendor`
