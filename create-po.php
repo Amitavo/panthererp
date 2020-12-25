@@ -46,118 +46,7 @@ if ($conn->connect_error) {
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>ERP</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Purchase Oreder</span>
-        </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item active" href="create-po.php">Create PO</a>
-            <a class="collapse-item" href="view_po_all.php">View All PO</a>
-            <a class="collapse-item" href="cards.html">Edit PO</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Master Inventory</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
+    <?php include("./include/sidebar.php"); ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -372,12 +261,12 @@ if ($conn->connect_error) {
                     <div class="row">
                       <div class="col-9 mt-2">
                         <span class="font-weight-bold">PO NO :</span>
-                        <span >Auto PO No</span>
+                        <span>Auto PO No</span>
                       </div>
                       <div class="col-3 mt-2  justify-content-end">
                         <span class="text-right font-weight-bold">Date :</span>
                         <span class="text-right">
-                          <?php 
+                          <?php
                           echo date("Y/m/d");
                           ?>
                         </span>
@@ -385,330 +274,364 @@ if ($conn->connect_error) {
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        
 
-                        <form action="create-po-final.php" method="post" class="container " >
-                        <div class="row justify-content-between">
-                          <div class="">
-                            <label for="vendor"><h5>Select A Vendor :</h5></label>
-                            <?php
-                               echo '<select name="vendor" id="vendor" style="width:200px" class="form-control">'; // Open your drop down box
-                               $sql = "SELECT vendor_id, name FROM vendor";
-                               $result = $conn->query($sql);
-   
-                               // Loop through the query results, outputing the options one by one
-                               while ($row = $result->fetch_assoc()) {
-                                 echo '<option value="'. $row["vendor_id"].'">'.$row["name"].'</option>';
-                               }
-                               echo '</select>';// Close your drop down box
-                            ?>
+
+                        <form action="create-po-final.php" method="post" class="container ">
+                          <div class="row justify-content-between">
+                            <div class="">
+                              <label for="vendor">
+                                <h5>Select A Vendor :</h5>
+                              </label>
+                              <?php
+                              echo '<select name="vendor" id="vendor" style="width:200px" class="form-control">'; // Open your drop down box
+                              $sql = "SELECT vendor_id, name FROM vendor";
+                              $result = $conn->query($sql);
+
+                              // Loop through the query results, outputing the options one by one
+                              while ($row = $result->fetch_assoc()) {
+                                echo '<option value="' . $row["vendor_id"] . '">' . $row["name"] . '</option>';
+                              }
+                              echo '</select>'; // Close your drop down box
+                              ?>
+                            </div>
+                            <div>
+                              <a href="new-vendor.php">
+                                <button type="button" class="btn btn-primary btn-sm ml-4"> + New Vendor</button>
+                              </a>
+                              <a href="new-item.php">
+                                <button type="button" class="btn btn-success btn-sm ml-2">+ New Item</button>
+                              </a>
+                            </div>
                           </div>
-                          <div>
-                            <a href="new-vendor.php">
-                            <button type="button" class="btn btn-primary btn-sm ml-4"> + New Vendor</button>
-                            </a>
-                            <a href="new-item.php">
-                            <button type="button" class="btn btn-success btn-sm ml-2">+ New Item</button>
-                            </a>
+
+                          <div class="row mt-5 mb-3 border-bottom">
+                            <div class="col-2 border border-1 bg-light text-center ">
+                              <p class="pt-3 font-weight-bold">SR NO</p>
+                            </div>
+                            <div class="col-6 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">ITEM</p>
+                            </div>
+                            <div class="col-4 border border-1 bg-light text-center">
+                              <p class="pt-3 font-weight-bold">QTY</p>
+                            </div>
                           </div>
+                          <!-- Table Header Ends -->
+
+                          <!-- Table Body Starts -->
+
+                          <div class="form-row mb-2 ">
+                            <div class="col-2 ">
+                              <p class="text-center ">1.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
+                                <?php
+                                echo '<select name="item1" id="item1" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
+                                ?>
+                              </div>
+                            </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty1" id="qty1" min="1" max="20000" class="form-control" required />
+                            </div>
                           </div>
 
-                            <div class="row mt-5 mb-3 border-bottom">
-                              <div class="col-2 border border-1 bg-light text-center "><p class="pt-3 font-weight-bold">SR NO</p></div>
-                              <div class="col-6 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">ITEM</p></div>
-                              <div class="col-4 border border-1 bg-light text-center"><p class="pt-3 font-weight-bold">QTY</p></div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">2.</p>
                             </div>
-                            <!-- Table Header Ends -->
-
-                            <!-- Table Body Starts -->
-                            
-                            <div class="form-row mb-2 ">
-                              <div class="col-2 "><p class="text-center ">1.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item1" id="item1" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item2" id="item2" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty1" id="qty1" min="1" max="20000" class="form-control" required />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty2" id="qty2" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">2.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">3.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item2" id="item2" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item3" id="item3" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty2" id="qty2" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty3" id="qty3" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">3.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">4.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item3" id="item3" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item4" id="item4" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty3" id="qty3" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty4" id="qty4" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">4.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">5.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item4" id="item4" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item5" id="item5" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty4" id="qty4" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty5" id="qty5" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">5.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">6.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item5" id="item5" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item6" id="item6" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty5" id="qty5" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty6" id="qty6" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">6.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">7.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item6" id="item6" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item7" id="item7" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty6" id="qty6" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty7" id="qty7" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">7.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">8.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item7" id="item7" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item8" id="item8" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty7" id="qty7" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty8" id="qty8" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">8.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">9.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item8" id="item8" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item9" id="item9" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty8" id="qty8" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty9" id="qty9" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">9.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">10.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item9" id="item9" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item10" id="item10" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty9" id="qty9" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty10" id="qty10" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">10.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">11.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item10" id="item10" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item11" id="item11" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty10" id="qty10" min="1" max="20000" class="form-control" />
                               </div>
                             </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty11" id="qty11" min="1" max="20000" class="form-control" />
+                            </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">11.</p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center ">12.</p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <?php
-                                  echo '<select name="item11" id="item11" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
+                                echo '<select name="item12" id="item12" class="form-control">'; // Open your drop down box
+                                $sql = "SELECT item_name FROM item_list";
+                                $result = $conn->query($sql);
+                                // Loop through the query results, outputing the options one by one
+                                while ($row = $result->fetch_assoc()) {
+                                  echo '<option value="' . $row["item_name"] . '">' . $row["item_name"] . '</option>';
+                                }
+                                echo '</select>'; // Close your drop down box
                                 ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty11" id="qty11" min="1" max="20000" class="form-control"  />
                               </div>
                             </div>
-
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center ">12.</p></div>
-                              <div class="col-6 ">
-                                <div>
-                                <?php
-                                  echo '<select name="item12" id="item12" class="form-control">'; // Open your drop down box
-                                  $sql = "SELECT item_name FROM item_list";
-                                  $result = $conn->query($sql);
-                                  // Loop through the query results, outputing the options one by one
-                                  while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="'. $row["item_name"].'">'. $row["item_name"].'</option>';
-                                  }
-                                  echo '</select>';// Close your drop down box
-                                ?>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="qty12" id="qty12" min="1" max="20000" class="form-control"  />
-                              </div>
+                            <div class="col-4 ">
+                              <input type="number" name="qty12" id="qty12" min="1" max="20000" class="form-control" />
                             </div>
+                          </div>
 
-                            <div class="form-row mb-2">
-                              <div class="col-2 "><p class="text-center "></p></div>
-                              <div class="col-6 ">
-                                <div>
+                          <div class="form-row mb-2">
+                            <div class="col-2 ">
+                              <p class="text-center "></p>
+                            </div>
+                            <div class="col-6 ">
+                              <div>
                                 <p class="text-right text-primary font-weight-bold">Enter Shipping cost (if any): </p>
-                                </div>
-                              </div>
-                              <div class="col-4 ">
-                                <input type="number" name="shipping" id="shipping" min="0" max="200000" class="form-control"  />
                               </div>
                             </div>
-                            
-                            
-                            <div class="row ">
-                              <div class="row col-12 justify-content-end mt-4  p-0">
-                                <button type="reset" class="btn btn-outline-secondary justify-content-end ">Reset</button>
-                                <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5 m-0" name="POSubmit">Next</button>
-                              </div>
+                            <div class="col-4 ">
+                              <input type="number" name="shipping" id="shipping" min="0" max="200000" class="form-control" />
                             </div>
-                           
+                          </div>
+
+
+                          <div class="row ">
+                            <div class="row col-12 justify-content-end mt-4  p-0">
+                              <button type="reset" class="btn btn-outline-secondary justify-content-end ">Reset</button>
+                              <button type="submit" class="btn btn-primary ml-4 pl-5 pr-5 m-0" name="POSubmit">Next</button>
+                            </div>
+                          </div>
+
 
                         </form>
 
 
-      
-                        
-                        
 
-                        
-                          
-                        
+
+
+
+
+
+
                         <!-- Table Body Ends -->
 
-                          <!-- Table Footer Starts -->
-                          <!-- <div class="row border-top">
+                        <!-- Table Footer Starts -->
+                        <!-- <div class="row border-top">
                             <div class="col-9"></div>
                             <div class="col-3 text-right mt-4"><p class="font-weight-bold">Total Tax: 9999999</p></div>
                           </div>
@@ -728,11 +651,11 @@ if ($conn->connect_error) {
                 </div>
               </div>
 
-              
+
 
             </div>
 
-            
+
 
           </div>
 

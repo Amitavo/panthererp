@@ -1,6 +1,30 @@
 <?php
-require_once("DB_POS.php");
+include_once("DB_POS_sqli.php");
 
+if (isset($_POST["Submit"])) {
+  if (!empty($_POST['name']) && !empty($_POST['price'])) {
+
+    $Iname = $_POST["name"];
+    $Iprice = $_POST["price"];
+    $Iattributes = $_POST["attributes"];
+    $Itax = $_POST["tax"];
+    $Idescription = $_POST["description"];
+    $Isuppliers = $_POST["suppliers"];
+    $Ihsn = $_POST["hsn"];
+
+
+
+    $sql = "INSERT INTO item_list (item_name,item_price,item_tax, item_attributes,item_description, item_suppliers, item_hsn)
+        VALUES ('$Iname', '$Iprice', '$Itax ', '$Iattributes','$Idescription', '$Isuppliers', '$Ihsn')";
+
+    if (mysqli_query($conn, $sql)) {
+      //   echo "New record created successfully";
+      echo '<script>alert("New item is created successfully")</script>';
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +38,7 @@ require_once("DB_POS.php");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>View all PO</title>
+  <title>Add New Item</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -227,72 +251,69 @@ require_once("DB_POS.php");
         <div class="container-fluid">
 
           <!-- Page Heading -->
-
+          <h1 class="h3 mb-4 text-gray-800">Create New Fabrication Item</h1>
 
           <div class="row">
 
             <div class="col-lg-12">
 
-              <!-- Purchase Order Form-->
+              <!-- Add New Item Form-->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">View All Purchase Orders</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">New Item</h6>
                 </div>
                 <div class="card-body">
+                  <div class="container">
 
-                  <center>
+                    <div class="row">
+                      <div class="col-9 mt-2">
+                      </div>
+                      <div class="col-3 mt-2  justify-content-end">
+                        <span class="text-right font-weight-bold">Date :</span>
+                        <span class="text-right">
+                          <?php
+                          echo date("Y/m/d");
+                          ?>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-12">
+                        <h3 class="card text-center p-4 bg-light mb-4">Enter New Fabrication Item Details</h3>
+                        <form action="new-item.php" method="post" class="container">
+                          <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <label for="name">Item Nane</label>
+                              <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                            </div>
+                            <div class="form-group col-md-12">
+                              <label for="description">Description</label>
+                              <input type="text" class="form-control" id="description" placeholder="Item description" name="description">
+                            </div>
 
 
-                    <table class="w-75 class=" table mt-5 border-top " >
-                      <caption> View from Database</caption>
-                      <thead>
-                        <tr class = " border m-5">
-                      <th scope="col" class="p-2">#</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">VENDOR</th>
-                      <th scope="col">TOTAL</th>
-                      <th scope="col">VIEW</th>
-                      <th scope="col">UPDATE</th>
-                      <th scope="col">DELETE</th>
-                      </tr>
-                      </thead>
-                      <?php
-                      $sql = "SELECT * FROM purchase_order ORDER BY po_no DESC";
-                      $stmt = $conn->query($sql);
-
-                      while ($DataRows = $stmt->fetch()) {
-
-                        $po_no = $DataRows["po_no"];
-                        $date = $DataRows["date"];
-                        $vendor_id = $DataRows["vendor_id"];
-                        $total = $DataRows["total"];
-
-                        $sql1 = "SELECT vendor_id, name FROM vendor WHERE vendor_id= $vendor_id";
-                        $stmt1 = $conn->query($sql1);
-
-                        while ($DataRows = $stmt1->fetch()) {
-                          $vendor_name = $DataRows['name'];
-                        }
-                      ?>
-
-                        <tr class="border ">
-
-                          <td class="p-2"><?php echo $po_no; ?></td>
-                          <td class="p-2"><?php echo date("d-m-y", strtotime($date)); ?></td>
-                          <td><?php echo $vendor_name; ?></td>
-                          <td><?php echo $total; ?></td>
-
-                          <td><a class="btn btn-outline-warning btn-sm " href="view_po_single.php?id=<?php echo $po_no; ?>">View</a></td>
-                          <td><a class="btn btn-outline-success btn-sm" href="update_po.php?id=<?php echo $po_no; ?>">Update</a></td>
-                          <td><a class="btn btn-outline-danger btn-sm" href="delete_po.php?id=<?php echo $po_no; ?>">Delete</a></td>
-                        </tr>
-
-                      <?php } ?>
-                    </table>
-                  </center>
+                            <div class="form-group col-md-12">
+                              <label for="attributes">Attributes</label>
+                              <input type="text" class="form-control" id="attributes" placeholder="Attributes like color/size/weight" name="attributes">
+                            </div>
+                          </div>
 
 
 
+
+
+                          <div class="row pl-3 pr-3 mt-3 justify-content-between">
+                            <button type="submit" class="btn btn-primary" name="Submit">Create New +</button>
+                            <button type="reset" class="btn btn-outline-secondary justify-content-end">Reset</button>
+                          </div>
+
+
+                        </form>
+
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
 

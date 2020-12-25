@@ -35,7 +35,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
 
                 <a class="collapse-item" href="new-item.php">Add New Item</a>
-                <a class="collapse-item" href="">Item List</a>
+                <a class="collapse-item" href="view_master_stock.php">Item List</a>
 
             </div>
     </li>
@@ -64,11 +64,11 @@
             <i class="fas fa-cart-arrow-down"></i>
             <span>Purchase Oreder</span>
         </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
                 <a class="collapse-item " href="create-po.php">Create PO</a>
-                <a class="collapse-item" href="cards.html">Manage PO</a>
+                <a class="collapse-item" href="view_po_all.php">Manage PO</a>
             </div>
         </div>
     </li>
@@ -84,7 +84,7 @@
         <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="utilities-color.html">Add Items to Inventory </a>
+                <a class="collapse-item" href="add_item_master_inventory.php">Add Items to Inventory </a>
                 <a class="collapse-item" href="utilities-border.html">Manage Inventory</a>
 
             </div>
@@ -99,7 +99,7 @@
         <div id="collapseUtilities22" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="utilities-color.html">Add Fabrication Items</a>
+                <a class="collapse-item" href="fabrication_new_item.php">Add Fabrication Items</a>
                 <a class="collapse-item" href="utilities-border.html">Fabrication Item List</a>
                 <a class="collapse-item" href="utilities-animation.html">Issue Daily report</a>
                 <a class="collapse-item" href="utilities-other.html">Add Stock to FI</a>

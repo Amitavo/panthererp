@@ -1,5 +1,3 @@
-
-
 <?php
 require_once('DB_POS.php');
 $SearchQueryParameter = $_GET["id"];
@@ -10,39 +8,38 @@ $SearchQueryParameter = $_GET["id"];
 $sql = "SELECT * FROM purchase_order WHERE po_no='$SearchQueryParameter' ";
 $stmt = $conn->query($sql);
 while ($DataRows  = $stmt->fetch()) {
-    $po_no = $DataRows["po_no"];
-    $date = $DataRows["date"];
-    $vendor_id = $DataRows["vendor_id"];
-    $total = $DataRows["total"];
-    $shipping = $DataRows["shipping"];
-    $status = $DataRows["status"];
+  $po_no = $DataRows["po_no"];
+  $date = $DataRows["date"];
+  $vendor_id = $DataRows["vendor_id"];
+  $total = $DataRows["total"];
+  $shipping = $DataRows["shipping"];
+  $status = $DataRows["status"];
 
-    $item1_id = $DataRows["item1_id"];
-    $item2_id = $DataRows["item2_id"];
-    $item3_id = $DataRows["item3_id"];
-    $item4_id = $DataRows["item4_id"];
-    $item5_id = $DataRows["item5_id"];
-    $item6_id = $DataRows["item6_id"];
-    $item7_id = $DataRows["item7_id"];
-    $item8_id = $DataRows["item8_id"];
-    $item9_id = $DataRows["item9_id"];
-    $item10_id = $DataRows["item10_id"];
-    $item11_id = $DataRows["item11_id"];
-    $item12_id = $DataRows["item12_id"];
+  $item1_id = $DataRows["item1_id"];
+  $item2_id = $DataRows["item2_id"];
+  $item3_id = $DataRows["item3_id"];
+  $item4_id = $DataRows["item4_id"];
+  $item5_id = $DataRows["item5_id"];
+  $item6_id = $DataRows["item6_id"];
+  $item7_id = $DataRows["item7_id"];
+  $item8_id = $DataRows["item8_id"];
+  $item9_id = $DataRows["item9_id"];
+  $item10_id = $DataRows["item10_id"];
+  $item11_id = $DataRows["item11_id"];
+  $item12_id = $DataRows["item12_id"];
 
-    $qty1 = $DataRows["qty1"];
-    $qty2 = $DataRows["qty2"];
-    $qty3 = $DataRows["qty3"];
-    $qty4 = $DataRows["qty4"];
-    $qty5 = $DataRows["qty5"];
-    $qty6 = $DataRows["qty6"];
-    $qty7 = $DataRows["qty7"];
-    $qty8 = $DataRows["qty8"];
-    $qty9 = $DataRows["qty9"];
-    $qty10 = $DataRows["qty10"];
-    $qty11 = $DataRows["qty11"];
-    $qty12 = $DataRows["qty12"];
-    
+  $qty1 = $DataRows["qty1"];
+  $qty2 = $DataRows["qty2"];
+  $qty3 = $DataRows["qty3"];
+  $qty4 = $DataRows["qty4"];
+  $qty5 = $DataRows["qty5"];
+  $qty6 = $DataRows["qty6"];
+  $qty7 = $DataRows["qty7"];
+  $qty8 = $DataRows["qty8"];
+  $qty9 = $DataRows["qty9"];
+  $qty10 = $DataRows["qty10"];
+  $qty11 = $DataRows["qty11"];
+  $qty12 = $DataRows["qty12"];
 }
 
 // echo "<br>Vendor is ".$vendor_id;
@@ -71,151 +68,140 @@ while ($DataRows  = $stmt1->fetch()) {
   $item1 = $DataRows["item_name"];
   $item1_price = $DataRows["item_price"];
   $item1_tax = $DataRows["item_tax"];
-  $item1_total = ($item1_price +($item1_tax*$item1_price/100))*$qty1;
+  $item1_total = ($item1_price + ($item1_tax * $item1_price / 100)) * $qty1;
 }
 
 //Item 2 details
-if(!empty($item2_id)){
+if (!empty($item2_id)) {
   $sql2 = "SELECT * FROM item_list WHERE item_id='$item2_id'";
   $stmt2 = $conn->query($sql2);
-  
+
   while ($DataRows  = $stmt2->fetch()) {
     $item2 = $DataRows["item_name"];
     $item2_price = $DataRows["item_price"];
     $item2_tax = $DataRows["item_tax"];
-    $item2_total = ($item2_price +($item2_tax*$item2_price/100))*$qty2;
+    $item2_total = ($item2_price + ($item2_tax * $item2_price / 100)) * $qty2;
   }
-
 }
 //Item 3 details
-if(!empty($item3_id)){
+if (!empty($item3_id)) {
   $sql3 = "SELECT * FROM item_list WHERE item_id='$item3_id'";
   $stmt3 = $conn->query($sql3);
-  
+
   while ($DataRows  = $stmt3->fetch()) {
     $item3 = $DataRows["item_name"];
     $item3_price = $DataRows["item_price"];
     $item3_tax = $DataRows["item_tax"];
-    $item3_total = ($item3_price +($item3_tax/100*$item3_price))*$qty3;
+    $item3_total = ($item3_price + ($item3_tax / 100 * $item3_price)) * $qty3;
   }
-
 }
 //Item 4 details
-if(!empty($item4_id)){
+if (!empty($item4_id)) {
   $sql4 = "SELECT * FROM item_list WHERE item_id='$item4_id'";
   $stmt4 = $conn->query($sql4);
-  
+
   while ($DataRows  = $stmt4->fetch()) {
     $item4 = $DataRows["item_name"];
     $item4_price = $DataRows["item_price"];
     $item4_tax = $DataRows["item_tax"];
-    $item4_total = ($item4_price +($item4_tax*$item4_price/100))*$qty4;
+    $item4_total = ($item4_price + ($item4_tax * $item4_price / 100)) * $qty4;
   }
-
 }
 //Item 5 details
-if(!empty($item5_id)){
+if (!empty($item5_id)) {
   $sql5 = "SELECT * FROM item_list WHERE item_id='$item5_id'";
   $stmt5 = $conn->query($sql5);
-  
+
   while ($DataRows  = $stmt5->fetch()) {
     $item5 = $DataRows["item_name"];
     $item5_price = $DataRows["item_price"];
     $item5_tax = $DataRows["item_tax"];
-    $item5_total = ($item5_price +($item5_tax*$item5_price/100))*$qty5;
+    $item5_total = ($item5_price + ($item5_tax * $item5_price / 100)) * $qty5;
   }
-
 }
 //Item 6 details
-if(!empty($item6_id)){
+if (!empty($item6_id)) {
   $sql6 = "SELECT * FROM item_list WHERE item_id='$item6_id'";
   $stmt6 = $conn->query($sql6);
-  
+
   while ($DataRows  = $stmt6->fetch()) {
     $item6 = $DataRows["item_name"];
     $item6_price = $DataRows["item_price"];
     $item6_tax = $DataRows["item_tax"];
-    $item6_total = ($item6_price +($item6_tax*$item6_price/100))*$qty6;
+    $item6_total = ($item6_price + ($item6_tax * $item6_price / 100)) * $qty6;
   }
-
 }
 //Item 7 details
-if(!empty($item7_id)){
+if (!empty($item7_id)) {
   $sql7 = "SELECT * FROM item_list WHERE item_id='$item7_id'";
   $stmt7 = $conn->query($sql7);
-  
+
   while ($DataRows  = $stmt7->fetch()) {
     $item7 = $DataRows["item_name"];
     $item7_price = $DataRows["item_price"];
     $item7_tax = $DataRows["item_tax"];
-    $item7_total = ($item7_price +($item7_tax*$item7_price/100))*$qty7;
+    $item7_total = ($item7_price + ($item7_tax * $item7_price / 100)) * $qty7;
   }
-
 }
 //Item 8 details
-if(!empty($item8_id)){
+if (!empty($item8_id)) {
   $sql8 = "SELECT * FROM item_list WHERE item_id='$item8_id'";
   $stmt8 = $conn->query($sql8);
-  
+
   while ($DataRows  = $stmt8->fetch()) {
     $item8 = $DataRows["item_name"];
     $item8_price = $DataRows["item_price"];
     $item8_tax = $DataRows["item_tax"];
-    $item8_total = ($item8_price +($item8_tax*$item8_price/100))*$qty8;
+    $item8_total = ($item8_price + ($item8_tax * $item8_price / 100)) * $qty8;
   }
-
 }
 //Item 9 details
-if(!empty($item9_id)){
+if (!empty($item9_id)) {
   $sql9 = "SELECT * FROM item_list WHERE item_id='$item9_id'";
   $stmt9 = $conn->query($sql9);
-  
+
   while ($DataRows  = $stmt9->fetch()) {
     $item9 = $DataRows["item_name"];
     $item9_price = $DataRows["item_price"];
     $item9_tax = $DataRows["item_tax"];
-    $item9_total = ($item9_price +($item9_tax*$item9_price/100))*$qty9;
+    $item9_total = ($item9_price + ($item9_tax * $item9_price / 100)) * $qty9;
   }
-
 }
 //Item 10 details
-if(!empty($item10_id)){
+if (!empty($item10_id)) {
   $sql10 = "SELECT * FROM item_list WHERE item_id='$item10_id'";
   $stmt10 = $conn->query($sql10);
-  
+
   while ($DataRows  = $stmt10->fetch()) {
     $item10 = $DataRows["item_name"];
     $item10_price = $DataRows["item_price"];
     $item10_tax = $DataRows["item_tax"];
-    $item10_total = ($item10_price +($item10_tax*$item10_price/100))*$qty10;
+    $item10_total = ($item10_price + ($item10_tax * $item10_price / 100)) * $qty10;
   }
-
 }
 //Item 11 details
-if(!empty($item11_id)){
+if (!empty($item11_id)) {
   $sql11 = "SELECT * FROM item_list WHERE item_id='$item11_id'";
   $stmt11 = $conn->query($sql11);
-  
+
   while ($DataRows  = $stmt11->fetch()) {
     $item11 = $DataRows["item_name"];
     $item11_price = $DataRows["item_price"];
     $item11_tax = $DataRows["item_tax"];
-    $item11_total = ($item11_price +($item11_tax*$item11_price/100))*$qty11;
+    $item11_total = ($item11_price + ($item11_tax * $item11_price / 100)) * $qty11;
   }
-
 }
 //Item 12 details
-if(!empty($item12_id)){
+if (!empty($item12_id)) {
   $sql12 = "SELECT * FROM item_list WHERE item_id='$item12_id'";
   $stmt12 = $conn->query($sql12);
-  
+
   while ($DataRows  = $stmt12->fetch()) {
     $item12 = $DataRows["item_name"];
     $item12_price = $DataRows["item_price"];
     $item12_tax = $DataRows["item_tax"];
-    $item12_total = ($item12_price +($item12_tax*$item12_price/100))*$qty12;
+    $item12_total = ($item12_price + ($item12_tax * $item12_price / 100)) * $qty12;
   }
-
 }
 // Calculating subtotal value
 $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_total + $item6_total + $item7_total + $item8_total + $item9_total + $item10_total + $item11_total + $item11_total;
@@ -246,124 +232,13 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
 
 <body id="page-top">
 
-  
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Panther <sup>ERP</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Purchase Oreder</span>
-        </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item " href="create-po.php">Create PO</a>
-            <a class="collapse-item active" href="view_po_all.php">View All PO</a>
-            <a class="collapse-item" href="cards.html">Edit PO</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Master Inventory</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
+    <?php include("./include/sidebar.php"); ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -579,13 +454,13 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
                     </div>
                     <div class="row">
                       <div class="col-9 mt-2">
-                       <u> <span class="font-weight-bold">PO NO :</span>
-                        <span ><?php echo $po_no ?></span></u>
+                        <u> <span class="font-weight-bold">PO NO :</span>
+                          <span><?php echo $po_no ?></span></u>
                       </div>
                       <div class="col-3 mt-2  text-right pr-4">
                         <span class="text-right font-weight-bold">Date :</span>
                         <span class="text-right">
-                        <?php echo date("d-m-y", strtotime($date));?>
+                          <?php echo date("d-m-y", strtotime($date)); ?>
                         </span>
                       </div>
                     </div>
@@ -595,23 +470,25 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
 
                           <div class="col-4">
                             <h5 class="font-weight-bold">Vendor Details:</h5>
-                            <span><?php echo $vendor_name;?></span><br/>
-                            <span><?php echo $vendor_number.", ".$vendor_email; ?></span><br/>
-                            <span><?php echo $vendor_address;?></span><br/>
-                            <span><?php if(!empty($vendor_gst_no)){echo "GST NO: ". $vendor_gst_no;} ?></span><br/>
-                            
+                            <span><?php echo $vendor_name; ?></span><br />
+                            <span><?php echo $vendor_number . ", " . $vendor_email; ?></span><br />
+                            <span><?php echo $vendor_address; ?></span><br />
+                            <span><?php if (!empty($vendor_gst_no)) {
+                                    echo "GST NO: " . $vendor_gst_no;
+                                  } ?></span><br />
+
                           </div>
                           <div class="col-4 ">
                             <h5 class="font-weight-bold">Ship To:</h5>
-                            <span>Unique Internationals.</span><br/>
-                            <span>164, Mohkampur, Near Amar Ujala,</span><br/>
+                            <span>Unique Internationals.</span><br />
+                            <span>164, Mohkampur, Near Amar Ujala,</span><br />
                             <span>Meerut, Uttar Pradesh- 250002</span>
                           </div>
 
                         </div>
 
 
-                        
+
 
 
 
@@ -628,120 +505,120 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
                           </thead>
                           <tbody>
 
-                            <?php 
+                            <?php
 
-                              if(!empty($qty1) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>1</th>";
-                                echo "<td>".$item1."</td>";
-                                echo "<td>".$qty1."</td>";
-                                echo "<td>".$item1_price."</td>";
-                                echo "<td>".$item1_tax."</td>";
-                                echo "<td>".$item1_total."</td>";
-                              }
-                              if(!empty($qty2) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>2</th>";
-                                echo "<td>".$item2."</td>";
-                                echo "<td>".$qty2."</td>";
-                                echo "<td>".$item2_price."</td>";
-                                echo "<td>".$item2_tax."</td>";
-                                echo "<td>".$item2_total."</td>";
-                              }
-                              if(!empty($qty3) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>3</th>";
-                                echo "<td>".$item3."</td>";
-                                echo "<td>".$qty3."</td>";
-                                echo "<td>".$item3_price."</td>";
-                                echo "<td>".$item3_tax."</td>";
-                                echo "<td>".$item3_total."</td>";
-                              }
-                              if(!empty($qty4) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>4</th>";
-                                echo "<td>".$item4."</td>";
-                                echo "<td>".$qty4."</td>";
-                                echo "<td>".$item4_price."</td>";
-                                echo "<td>".$item4_tax."</td>";
-                                echo "<td>".$item4_total."</td>";
-                              }
-                              if(!empty($qty5) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>5</th>";
-                                echo "<td>".$item5."</td>";
-                                echo "<td>".$qty5."</td>";
-                                echo "<td>".$item5_price."</td>";
-                                echo "<td>".$item5_tax."</td>";
-                                echo "<td>".$item5_total."</td>";
-                              }
-                              if(!empty($qty6) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>6</th>";
-                                echo "<td>".$item6."</td>";
-                                echo "<td>".$qty6."</td>";
-                                echo "<td>".$item6_price."</td>";
-                                echo "<td>".$item6_tax."</td>";
-                                echo "<td>".$item6_total."</td>";
-                              }
-                              if(!empty($qty7) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>7</th>";
-                                echo "<td>".$item7."</td>";
-                                echo "<td>".$qty7."</td>";
-                                echo "<td>".$item7_price."</td>";
-                                echo "<td>".$item7_tax."</td>";
-                                echo "<td>".$item7_total."</td>";
-                              }
-                              if(!empty($qty8) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>8</th>";
-                                echo "<td>".$item8."</td>";
-                                echo "<td>".$qty8."</td>";
-                                echo "<td>".$item8_price."</td>";
-                                echo "<td>".$item8_tax."</td>";
-                                echo "<td>".$item8_total."</td>";
-                              }
-                              if(!empty($qty9) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>9</th>";
-                                echo "<td>".$item9."</td>";
-                                echo "<td>".$qty9."</td>";
-                                echo "<td>".$item9_price."</td>";
-                                echo "<td>".$item9_tax."</td>";
-                                echo "<td>".$item9_total."</td>";
-                              }
-                              if(!empty($qty10) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>10</th>";
-                                echo "<td>".$item10."</td>";
-                                echo "<td>".$qty10."</td>";
-                                echo "<td>".$item10_price."</td>";
-                                echo "<td>".$item10_tax."</td>";
-                                echo "<td>".$item10_total."</td>";
-                              }
-                              if(!empty($qty11) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>11</th>";
-                                echo "<td>".$item11."</td>";
-                                echo "<td>".$qty11."</td>";
-                                echo "<td>".$item11_price."</td>";
-                                echo "<td>".$item11_tax."</td>";
-                                echo "<td>".$item11_total."</td>";
-                              }
-                              if(!empty($qty12) ){
-                                echo "<tr>";
-                                echo "<th scope = 'row'>12</th>";
-                                echo "<td>".$item12."</td>";
-                                echo "<td>".$qty12."</td>";
-                                echo "<td>".$item12_price."</td>";
-                                echo "<td>".$item12_tax."</td>";
-                                echo "<td>".$item12_total."</td>";
-                              }
-                            
+                            if (!empty($qty1)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>1</th>";
+                              echo "<td>" . $item1 . "</td>";
+                              echo "<td>" . $qty1 . "</td>";
+                              echo "<td>" . $item1_price . "</td>";
+                              echo "<td>" . $item1_tax . "</td>";
+                              echo "<td>" . $item1_total . "</td>";
+                            }
+                            if (!empty($qty2)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>2</th>";
+                              echo "<td>" . $item2 . "</td>";
+                              echo "<td>" . $qty2 . "</td>";
+                              echo "<td>" . $item2_price . "</td>";
+                              echo "<td>" . $item2_tax . "</td>";
+                              echo "<td>" . $item2_total . "</td>";
+                            }
+                            if (!empty($qty3)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>3</th>";
+                              echo "<td>" . $item3 . "</td>";
+                              echo "<td>" . $qty3 . "</td>";
+                              echo "<td>" . $item3_price . "</td>";
+                              echo "<td>" . $item3_tax . "</td>";
+                              echo "<td>" . $item3_total . "</td>";
+                            }
+                            if (!empty($qty4)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>4</th>";
+                              echo "<td>" . $item4 . "</td>";
+                              echo "<td>" . $qty4 . "</td>";
+                              echo "<td>" . $item4_price . "</td>";
+                              echo "<td>" . $item4_tax . "</td>";
+                              echo "<td>" . $item4_total . "</td>";
+                            }
+                            if (!empty($qty5)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>5</th>";
+                              echo "<td>" . $item5 . "</td>";
+                              echo "<td>" . $qty5 . "</td>";
+                              echo "<td>" . $item5_price . "</td>";
+                              echo "<td>" . $item5_tax . "</td>";
+                              echo "<td>" . $item5_total . "</td>";
+                            }
+                            if (!empty($qty6)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>6</th>";
+                              echo "<td>" . $item6 . "</td>";
+                              echo "<td>" . $qty6 . "</td>";
+                              echo "<td>" . $item6_price . "</td>";
+                              echo "<td>" . $item6_tax . "</td>";
+                              echo "<td>" . $item6_total . "</td>";
+                            }
+                            if (!empty($qty7)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>7</th>";
+                              echo "<td>" . $item7 . "</td>";
+                              echo "<td>" . $qty7 . "</td>";
+                              echo "<td>" . $item7_price . "</td>";
+                              echo "<td>" . $item7_tax . "</td>";
+                              echo "<td>" . $item7_total . "</td>";
+                            }
+                            if (!empty($qty8)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>8</th>";
+                              echo "<td>" . $item8 . "</td>";
+                              echo "<td>" . $qty8 . "</td>";
+                              echo "<td>" . $item8_price . "</td>";
+                              echo "<td>" . $item8_tax . "</td>";
+                              echo "<td>" . $item8_total . "</td>";
+                            }
+                            if (!empty($qty9)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>9</th>";
+                              echo "<td>" . $item9 . "</td>";
+                              echo "<td>" . $qty9 . "</td>";
+                              echo "<td>" . $item9_price . "</td>";
+                              echo "<td>" . $item9_tax . "</td>";
+                              echo "<td>" . $item9_total . "</td>";
+                            }
+                            if (!empty($qty10)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>10</th>";
+                              echo "<td>" . $item10 . "</td>";
+                              echo "<td>" . $qty10 . "</td>";
+                              echo "<td>" . $item10_price . "</td>";
+                              echo "<td>" . $item10_tax . "</td>";
+                              echo "<td>" . $item10_total . "</td>";
+                            }
+                            if (!empty($qty11)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>11</th>";
+                              echo "<td>" . $item11 . "</td>";
+                              echo "<td>" . $qty11 . "</td>";
+                              echo "<td>" . $item11_price . "</td>";
+                              echo "<td>" . $item11_tax . "</td>";
+                              echo "<td>" . $item11_total . "</td>";
+                            }
+                            if (!empty($qty12)) {
+                              echo "<tr>";
+                              echo "<th scope = 'row'>12</th>";
+                              echo "<td>" . $item12 . "</td>";
+                              echo "<td>" . $qty12 . "</td>";
+                              echo "<td>" . $item12_price . "</td>";
+                              echo "<td>" . $item12_tax . "</td>";
+                              echo "<td>" . $item12_total . "</td>";
+                            }
+
                             ?>
-                         
-                            
+
+
                             <tr>
                               <th scope="row"></th>
                               <td></td>
@@ -756,11 +633,11 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
                               <td></td>
                               <td></td>
                               <td>SHIPPING</td>
-                              <td><?php 
-                              echo $shipping;
-                              ?>
-                              <!-- <input type="number" name="shipping" id="shipping" class="form-control bg-light border-0 small w-50"> -->
-                              <!-- <script>
+                              <td><?php
+                                  echo $shipping;
+                                  ?>
+                                <!-- <input type="number" name="shipping" id="shipping" class="form-control bg-light border-0 small w-50"> -->
+                                <!-- <script>
                               let shipping = document.getElementById("shipping");
                               shipping.addEventListener("change",shippingValue);
                              function shippingValue (){
@@ -777,18 +654,18 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
                               <td></td>
                               <td class="font-weight-bold">TOTAL</td>
                               <td class="font-weight-bold">
-                              <?php
-                              if($shipping > 0){
-                                $total = $subtotal + $shipping;
-                              }else {
-                                $total = $subtotal ;
-                              }
-                              echo $total;
+                                <?php
+                                if ($shipping > 0) {
+                                  $total = $subtotal + $shipping;
+                                } else {
+                                  $total = $subtotal;
+                                }
+                                echo $total;
 
-                              session_start();
-                              // Set session variables
-                              $_SESSION[total] = $total;
-                              ?>
+                                session_start();
+                                // Set session variables
+                                $_SESSION[total] = $total;
+                                ?>
                               </td>
                             </tr>
                           </tbody>
@@ -804,16 +681,16 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
                             </div>
                           </div>
                           <div class="col-6 mt-5 ">
-                         
-                            
+
+
                             <button onclick="window.print()" type="reset" class="btn btn-outline-secondary justify-content-end mr-5">Print PO</button>
                             <!-- <button onclick="<?php ?>" type="submit" class="btn btn-primary pl-5 pr-5 ml-5" name="Submit">Submit</button> -->
-                            
+
                             <a href='create-po-final-submit.php' class="btn btn-primary pl-5 pr-5 ml-5">Submit PO</a>
                           </div>
 
                         </div>
-                        
+
 
                       </div>
 
@@ -822,11 +699,11 @@ $subtotal = $item1_total + $item2_total + $item3_total + $item4_total + $item5_t
                 </div>
               </div>
 
-              
+
 
             </div>
 
-            
+
 
           </div>
 
